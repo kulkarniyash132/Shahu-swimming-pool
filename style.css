@@ -954,3 +954,5 @@ textarea.form-input {
   .anatomy-buttons { display: none; }
   .hotspot-count { display: block; }
 }
+
+@media (prefers-color-scheme: light) { .form-input, .form-input::placeholder { color: #000; } select.form-input option { color: #000; background: #fff; } }
