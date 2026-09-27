@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Chhatrapati Shahu Swimming Pool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      padding: 40px;
+    }
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    .admin-title em {
+      color: var(--accent);
+      font-style: italic;
+    }
+    .table-wrapper {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .td-name {
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+    .td-date {
+      color: var(--accent);
+      font-family: var(--font-mono);
+    }
+    .empty-state {
+      padding: 60px 20px;
+      text-align: center;
+      color: #94a3b8;
+    }
+    .back-btn {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+    .back-btn:hover {
+      background: rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-container">
+    <div class="admin-header">
+      <h1 class="admin-title">Booking <em>Dashboard</em></h1>
+      <a href="/" class="back-btn">← Back to Site</a>
+    </div>
+
+    <div class="table-wrapper">
+      <table id="bookings-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Program</th>
+            <th>Date</th>
+            <th>Time Slot</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody id="bookings-body">
+          <tr><td colspan="7" class="empty-state">Loading bookings...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('/api/bookings');
+        const data = await response.json();
+        
+        const tbody = document.getElementById('bookings-body');
+        
+        if (data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No bookings found.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = '';
+        data.forEach(booking => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>#${booking.id}</td>
+            <td class="td-name">${booking.name}</td>
+            <td>${booking.phone}</td>
+            <td>${booking.program}</td>
+            <td class="td-date">${booking.date}</td>
+            <td>${booking.time}</td>
+            <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${booking.notes || ''}">
+              ${booking.notes || '—'}
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+      } catch (error) {
+        document.getElementById('bookings-body').innerHTML = 
+          '<tr><td colspan="7" class="empty-state">Error loading bookings. Check connection.</td></tr>';
+      }
+    });
+  </script>
+</body>
+</html>

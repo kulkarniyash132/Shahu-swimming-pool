@@ -1,0 +1,12 @@
+{
+  "name": "shahu-jaltaran-pool",
+  "version": "1.0.0",
+  "description": "Chhatrapati Shahu Swimming Pool — Booking Website",
+  "private": true,
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0"
+  }
+}
