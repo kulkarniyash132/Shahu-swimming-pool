@@ -122,8 +122,26 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
+      const password = prompt("Enter Admin Password:");
+      if (!password) {
+        document.getElementById('bookings-body').innerHTML = 
+          '<tr><td colspan="7" class="empty-state">Access Denied. Reload page to try again.</td></tr>';
+        return;
+      }
+
       try {
-        const response = await fetch('/api/bookings');
+        const response = await fetch('/api/bookings', {
+          headers: {
+            'Authorization': password
+          }
+        });
+        
+        if (response.status === 401) {
+          document.getElementById('bookings-body').innerHTML = 
+            '<tr><td colspan="7" class="empty-state" style="color: #ef4444;">Incorrect Password. Reload page to try again.</td></tr>';
+          return;
+        }
+
         const data = await response.json();
         
         const tbody = document.getElementById('bookings-body');
