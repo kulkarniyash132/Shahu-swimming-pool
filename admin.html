@@ -244,12 +244,9 @@
 
     // ── Bookings table ──
     document.addEventListener('DOMContentLoaded', async () => {
-      const password = prompt('Enter Admin Password:');
+      let password = prompt('Enter Admin Password (default: admin123):');
       if (!password) {
-        document.getElementById('bookings-body').innerHTML =
-          '<tr><td colspan="7" class="empty-state">Access Denied. Reload page to try again.</td></tr>';
-        document.getElementById('open-batches-btn').disabled = true;
-        return;
+        password = 'admin123';
       }
       adminPassword = password;
 
