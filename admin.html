@@ -224,6 +224,23 @@
   <script>
     function pad(n) { return String(n).padStart(2, '0'); }
 
+    function formatClock12(minutes) {
+      const hour24 = Math.floor(minutes / 60) % 24;
+      const hour12 = hour24 % 12 || 12;
+      return hour12 + ':' + pad(minutes % 60) + ' ' + (hour24 >= 12 ? 'PM' : 'AM');
+    }
+
+    function formatRange12(startMinutes, endMinutes) {
+      return formatClock12(startMinutes) + ' – ' + formatClock12(endMinutes);
+    }
+
+    function formatStoredRange12(value) {
+      if (typeof value !== 'string') return value || '—';
+      const match = value.match(/^(\d{1,2}):(\d{2})\s*[–-]\s*(\d{1,2}):(\d{2})$/);
+      if (!match) return value;
+      return formatRange12(Number(match[1]) * 60 + Number(match[2]), Number(match[3]) * 60 + Number(match[4]));
+    }
+
     function generateSlots() {
       const slots = [];
       const startM = 6 * 60, endM = 22 * 60;
@@ -233,7 +250,7 @@
         const breakLabel = breakEnd <= endM
           ? pad(Math.floor(batchEnd/60)) + ':' + pad(batchEnd%60) + ' \u2013 ' + pad(Math.floor(breakEnd/60)) + ':' + pad(breakEnd%60) + ' \u00b7 break'
           : null;
-        slots.push({ slotLabel, breakLabel });
+        slots.push({ slotLabel, displayLabel: formatRange12(m, batchEnd), breakLabel, displayBreakLabel: breakEnd <= endM ? formatRange12(batchEnd, breakEnd) + ' · break' : null });
       }
       return slots;
     }
@@ -290,7 +307,7 @@
           tr.appendChild(addCell(booking.phone));
           tr.appendChild(addCell(booking.program));
           tr.appendChild(addCell(booking.date, 'td-date'));
-          tr.appendChild(addCell(booking.time));
+          tr.appendChild(addCell(formatStoredRange12(booking.time)));
           const notesCell = addCell(booking.notes);
           notesCell.style.maxWidth = '200px';
           notesCell.style.whiteSpace = 'nowrap';
@@ -341,8 +358,8 @@
           card.className = 'batch-card';
           card.dataset.slot = slotLabel;
           card.innerHTML =
-            '<div class="batch-slot-label">' + slotLabel + '</div>' +
-            (breakLabel ? '<div class="batch-break-label">&#9208; ' + breakLabel + '</div>' : '') +
+            '<div class="batch-slot-label">' + s.displayLabel + '</div>' +
+            (s.displayBreakLabel ? '<div class="batch-break-label">&#9208; ' + s.displayBreakLabel + '</div>' : '') +
             '<div class="batch-fields">' +
               '<div class="batch-field">' +
                 '<label>Active Coaches</label>' +

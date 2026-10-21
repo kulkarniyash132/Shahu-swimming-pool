@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chhatrapati Shahu Swimming Pool — Dhayari, Pune</title
-  <meta name="description" content="A civic aquatic sanctuary in the heart of Dhayari, Pune. Olympic-length 50M pool with certified coaches, open daily 06:00 – 22:00.">
+  <title>Chhatrapati Shahu Swimming Pool — Dhayari, Pune</title>
+  <meta name="description" content="A welcoming 25 m swimming pool in Dhayari, Pune, with swimming programs and live coach and student counts. Pool hours: 6:00 AM–10:00 PM.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -63,8 +63,8 @@
   <!-- ===== STATS BAR ===== -->
   <div class="stats-bar" id="stats">
     <div class="stat">
-      <span class="stat-value">50M</span>
-      <span class="stat-label" data-i18n="statOlympic">Olympic Length</span>
+      <span class="stat-value">25M</span>
+      <span class="stat-label" data-i18n="statOlympic">Pool Length</span>
     </div>
     <div class="stat">
       <span class="stat-value">6</span>
@@ -75,7 +75,7 @@
       <span class="stat-label" data-i18n="statSwimmers">Active Swimmers</span>
     </div>
     <div class="stat">
-      <span class="stat-value">06:00 → 22:00</span>
+      <span class="stat-value" data-i18n="statHoursValue">6:00 AM – 10:00 PM</span>
       <span class="stat-label" data-i18n="statDaily">Daily</span>
     </div>
   </div>
@@ -88,17 +88,17 @@
           <span class="mono">Live Batch Status</span>
         </div>
         <h2 class="batch-status-title">Today's <em>batches.</em></h2>
-        <p class="batch-status-desc">Real-time coach and student count per batch · Max capacity 50 students · 45-min sessions with 15-min breaks</p>
+        <p class="batch-status-desc" data-i18n="batchStatusDesc">Live coach and student counts for each batch · Capacity: 50 students · 45-minute sessions with 15-minute breaks</p>
       </div>
-      <p class="batch-status-message" id="batch-status-message" role="status" aria-live="polite">Loading live coach and student counts…</p>
+      <p class="batch-status-message" id="batch-status-message" role="status" aria-live="polite" data-i18n="batchStatusLoading">Loading live coach and student counts…</p>
       <div class="batch-status-grid" id="batch-status-grid">
         <!-- Populated by JS -->
         <div class="batch-status-loading">Loading batches…</div>
       </div>
       <div class="batch-status-legend">
-        <span class="legend-item"><span class="legend-dot legend-dot--women"></span> Women's exclusive batch</span>
-        <span class="legend-item"><span class="legend-dot legend-dot--open"></span> Open batch</span>
-        <span class="legend-item"><span class="legend-dot legend-dot--full"></span> Near / at capacity</span>
+        <span class="legend-item"><span class="legend-dot legend-dot--women"></span> <span data-i18n="legendWomen">Women-only batch</span></span>
+        <span class="legend-item"><span class="legend-dot legend-dot--open"></span> <span data-i18n="legendOpen">Open batch</span></span>
+        <span class="legend-item"><span class="legend-dot legend-dot--full"></span> <span data-i18n="legendFull">Near capacity / full</span></span>
       </div>
     </div>
   </section>
@@ -222,7 +222,7 @@
   <!-- ===== PHOTO STRIP ===== -->
   <div class="photo-strip" id="why-swim">
     <div class="photo-strip-item">
-      <img src="images/pool-hero.png" alt="Olympic pool lanes">
+      <img src="images/pool-hero.png" alt="Swimming pool lanes">
       <span class="frame-label" data-i18n="frame00">Frame · 00</span>
     </div>
     <div class="photo-strip-item">
@@ -239,83 +239,123 @@
     </div>
   </div>
 
-  <!-- ===== ANATOMY ===== -->
+  <!-- ===== INTERACTIVE ANATOMY ===== -->
   <section class="anatomy section-pad" id="anatomy">
     <div class="chapter-label"><span data-i18n="chapAnatomy">Chapter II — Anatomy of a Swimmer</span></div>
     <div class="anatomy-header">
-      <h2 class="anatomy-title" data-i18n="anatomyTitle">Hover the body.<br><em>Read the transformation.</em></h2>
+      <div>
+        <p class="anatomy-kicker mono" data-i18n="anatomyKicker">THE SWIMMER'S BLUEPRINT · 08 REGIONS</p>
+        <h2 class="anatomy-title" data-i18n="anatomyTitle">Explore the body.<br><em>Feel the difference.</em></h2>
+      </div>
+      <p class="anatomy-lead" data-i18n="anatomyLead">One movement, whole-body benefits. Hover over a glowing point to see how swimming supports that region.</p>
     </div>
     <div class="anatomy-layout">
-      <div class="body-diagram">
-        <div class="body-svg-container">
-          <!-- Human body outline SVG -->
-          <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Head -->
-            <ellipse cx="100" cy="45" rx="30" ry="35" stroke="#334155" stroke-width="1"/>
-            <!-- Neck -->
-            <line x1="90" y1="80" x2="90" y2="95" stroke="#334155" stroke-width="1"/>
-            <line x1="110" y1="80" x2="110" y2="95" stroke="#334155" stroke-width="1"/>
-            <!-- Shoulders -->
-            <path d="M90 95 Q50 95 40 130" stroke="#334155" stroke-width="1" fill="none"/>
-            <path d="M110 95 Q150 95 160 130" stroke="#334155" stroke-width="1" fill="none"/>
-            <!-- Torso -->
-            <path d="M55 130 Q55 200 75 250" stroke="#334155" stroke-width="1" fill="none"/>
-            <path d="M145 130 Q145 200 125 250" stroke="#334155" stroke-width="1" fill="none"/>
-            <!-- Arms -->
-            <path d="M40 130 Q25 180 30 220" stroke="#334155" stroke-width="1" fill="none"/>
-            <path d="M160 130 Q175 180 170 220" stroke="#334155" stroke-width="1" fill="none"/>
-            <!-- Hips -->
-            <path d="M75 250 Q100 260 125 250" stroke="#334155" stroke-width="1" fill="none"/>
-            <!-- Legs -->
-            <path d="M80 255 Q75 310 70 370" stroke="#334155" stroke-width="1" fill="none"/>
-            <path d="M120 255 Q125 310 130 370" stroke="#334155" stroke-width="1" fill="none"/>
-            <!-- Inner leg lines -->
-            <path d="M90 255 Q88 310 85 370" stroke="#334155" stroke-width="1" fill="none"/>
-            <path d="M110 255 Q112 310 115 370" stroke="#334155" stroke-width="1" fill="none"/>
-          </svg>
-          <!-- Hotspots -->
-          <div class="hotspot" style="top: 5%; left: 47%;" data-region="brain" title="Brain"> <!-- pending -->
-            <div class="hotspot-inner"></div>
-          </div>
-          <div class="hotspot" style="top: 34%; left: 40%;" data-region="lungs" title="Lungs"> <!-- pending -->
-            <div class="hotspot-inner"></div>
-          </div>
-          <div class="hotspot" style="top: 30%; left: 47%;" data-region="heart" title="Heart"> <!-- pending -->
-            <div class="hotspot-inner"></div>
-          </div>
-          <div class="hotspot" style="top: 25%; left: 30%;" data-region="shoulders" title="Shoulders"> <!-- done -->
-            <div class="hotspot-inner"></div>
-          </div>
-          <div class="hotspot" style="top: 42%; left: 47%;" data-region="core" title="Core"><!-- pending -->
-            <div class="hotspot-inner"></div>
-          </div>
-          <div class="hotspot" style="top: 48%; left: 47%;" data-region="back" title="Back"><!-- done -->
-            <div class="hotspot-inner"></div>
-          </div>
-          <div class="hotspot" style="top: 68%; left: 40%;" data-region="legs" title="Legs"><!-- done  -->
-            <div class="hotspot-inner"></div>
-          </div>
-          <div class="hotspot" style="top: 75%; left: 55%;" data-region="joints" title="Joints"><!-- done -->
-            <div class="hotspot-inner"></div>
+      <div class="body-stage">
+        <div class="body-stage-topline">
+          <span class="mono">FIG. 01 / HUMAN SYSTEM</span>
+          <span class="live-indicator"><i></i> INTERACTIVE</span>
+        </div>
+        <div class="body-diagram">
+          <div class="body-orbit body-orbit--outer"></div>
+          <div class="body-orbit body-orbit--inner"></div>
+          <div class="body-scanline"></div>
+          <div class="body-svg-container">
+            <svg viewBox="0 0 360 560" role="img" aria-labelledby="body-figure-title body-figure-desc" xmlns="http://www.w3.org/2000/svg">
+              <title id="body-figure-title">Interactive swimmer anatomy</title>
+              <desc id="body-figure-desc">A stylised human figure with highlighted head, shoulders, lungs, heart, core, spine, legs, and knees. Hover or focus any marker to explore a swimming benefit.</desc>
+              <defs>
+                <linearGradient id="bodyFill" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#164e63" stop-opacity=".92"/>
+                  <stop offset=".48" stop-color="#0e293d" stop-opacity=".96"/>
+                  <stop offset="1" stop-color="#091726" stop-opacity=".98"/>
+                </linearGradient>
+                <linearGradient id="bodyEdge" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#22d3ee" stop-opacity=".18"/>
+                  <stop offset=".5" stop-color="#a5f3fc" stop-opacity=".8"/>
+                  <stop offset="1" stop-color="#22d3ee" stop-opacity=".18"/>
+                </linearGradient>
+                <radialGradient id="organGlow">
+                  <stop offset="0" stop-color="#67e8f9" stop-opacity=".30"/>
+                  <stop offset="1" stop-color="#67e8f9" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="figureGlow" x="-40%" y="-25%" width="180%" height="150%">
+                  <feGaussianBlur stdDeviation="3.5"/>
+                </filter>
+              </defs>
+              <!-- subtle technical guide lines -->
+              <path d="M180 14V544 M48 150H312 M60 300H300 M74 430H286" stroke="#67e8f9" stroke-opacity=".10" stroke-width="1" stroke-dasharray="3 7"/>
+              <circle cx="180" cy="54" r="43" fill="url(#organGlow)"/>
+              <circle cx="180" cy="215" r="104" fill="url(#organGlow)" opacity=".45"/>
+              <!-- limbs -->
+              <path d="M139 119 C120 124 108 139 103 160 L84 225 C81 237 84 247 93 250 C101 253 108 247 112 235 L133 180 L149 151Z" fill="url(#bodyFill)" stroke="url(#bodyEdge)" stroke-width="1.4"/>
+              <path d="M221 119 C240 124 252 139 257 160 L276 225 C279 237 276 247 267 250 C259 253 252 247 248 235 L227 180 L211 151Z" fill="url(#bodyFill)" stroke="url(#bodyEdge)" stroke-width="1.4"/>
+              <path d="M158 292 C151 318 148 348 148 383 L145 452 L140 508 C139 518 143 526 153 528 L171 528 C179 527 181 521 181 512 L190 390 L198 390 L207 512 C207 521 209 527 217 528 L235 528 C245 526 249 518 248 508 L243 452 L240 383 C240 348 237 318 202 292Z" fill="url(#bodyFill)" stroke="url(#bodyEdge)" stroke-width="1.5"/>
+              <!-- torso -->
+              <path d="M157 105 C145 108 132 115 129 130 C125 148 134 175 139 200 C143 223 145 250 146 275 C147 292 157 305 169 314 L191 314 C203 305 213 292 214 275 C215 250 217 223 221 200 C226 175 235 148 231 130 C228 115 215 108 203 105 C195 115 165 115 157 105Z" fill="url(#bodyFill)" stroke="url(#bodyEdge)" stroke-width="1.6"/>
+              <path d="M157 105 C162 121 198 121 203 105 L199 91 L161 91Z" fill="url(#bodyFill)" stroke="#67e8f9" stroke-opacity=".42" stroke-width="1.2"/>
+              <!-- head and face profile details -->
+              <ellipse cx="180" cy="54" rx="31" ry="39" fill="url(#bodyFill)" stroke="url(#bodyEdge)" stroke-width="1.6"/>
+              <path d="M164 52 Q171 48 176 52 M184 52 Q189 48 196 52 M171 69 Q180 75 189 69" stroke="#67e8f9" stroke-opacity=".42" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+              <path d="M145 134 Q160 145 180 145 Q200 145 215 134 M149 160 Q180 174 211 160" stroke="#67e8f9" stroke-opacity=".48" stroke-width="1.4" fill="none"/>
+              <!-- lungs -->
+              <path d="M169 171 C157 167 150 184 151 204 C152 223 160 234 173 230 C178 224 177 204 177 187 C177 179 175 174 169 171Z" fill="#22d3ee" fill-opacity=".17" stroke="#67e8f9" stroke-opacity=".7" stroke-width="1.25"/>
+              <path d="M191 171 C203 167 210 184 209 204 C208 223 200 234 187 230 C182 224 183 204 183 187 C183 179 185 174 191 171Z" fill="#22d3ee" fill-opacity=".17" stroke="#67e8f9" stroke-opacity=".7" stroke-width="1.25"/>
+              <path d="M180 151V194 M180 173L166 186 M180 173L194 186" stroke="#a5f3fc" stroke-opacity=".55" stroke-width="1.1" fill="none"/>
+              <!-- heart -->
+              <path d="M180 213 C172 201 158 210 163 221 C167 230 180 237 180 237 C180 237 194 229 198 220 C203 208 188 201 180 213Z" fill="#fb7185" fill-opacity=".8" stroke="#fecdd3" stroke-width="1.2"/>
+              <!-- core / diaphragm -->
+              <path d="M151 242 Q180 258 209 242 M152 258 Q180 274 208 258 M156 276 Q180 289 204 276 M163 294 Q180 303 197 294" stroke="#67e8f9" stroke-opacity=".55" stroke-width="1.25" fill="none"/>
+              <!-- spine marker / vertebrae -->
+              <path d="M180 246V303" stroke="#a5f3fc" stroke-opacity=".7" stroke-width="1.1" stroke-dasharray="3 4"/>
+              <g fill="#67e8f9" fill-opacity=".6">
+                <ellipse cx="180" cy="250" rx="4" ry="2.5"/><ellipse cx="180" cy="260" rx="4" ry="2.5"/><ellipse cx="180" cy="270" rx="4" ry="2.5"/><ellipse cx="180" cy="280" rx="4" ry="2.5"/><ellipse cx="180" cy="290" rx="4" ry="2.5"/>
+              </g>
+              <!-- limbs detail -->
+              <path d="M104 172L94 222 M256 172L266 222 M153 323 Q164 345 160 374 M207 374 Q203 345 207 323 M151 399L148 449 M209 399L212 449" stroke="#67e8f9" stroke-opacity=".35" stroke-width="1.2" fill="none"/>
+              <ellipse cx="147" cy="389" rx="12" ry="17" fill="#67e8f9" fill-opacity=".08" stroke="#67e8f9" stroke-opacity=".28"/>
+              <ellipse cx="213" cy="389" rx="12" ry="17" fill="#67e8f9" fill-opacity=".08" stroke="#67e8f9" stroke-opacity=".28"/>
+              <!-- subtle floor marker -->
+              <path d="M95 539H265" stroke="#67e8f9" stroke-opacity=".25" stroke-width="1"/>
+            </svg>
+            <!-- Nodes are positioned against the SVG viewBox and update the detail panel on hover, focus, or tap. -->
+            <button class="hotspot" style="--x:50%;--y:9.5%" type="button" data-region="brain" data-label="Brain" aria-label="Explore brain benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">BRAIN</span></button>
+            <button class="hotspot" style="--x:39%;--y:24.5%" type="button" data-region="shoulders" data-label="Shoulders" aria-label="Explore shoulder benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">SHOULDERS</span></button>
+            <button class="hotspot" style="--x:45%;--y:36.5%" type="button" data-region="lungs" data-label="Lungs" aria-label="Explore lung benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">LUNGS</span></button>
+            <button class="hotspot" style="--x:50.5%;--y:40.5%" type="button" data-region="heart" data-label="Heart" aria-label="Explore heart benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">HEART</span></button>
+            <button class="hotspot" style="--x:50%;--y:52.5%" type="button" data-region="core" data-label="Core" aria-label="Explore core benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">CORE</span></button>
+            <button class="hotspot" style="--x:58%;--y:47.5%" type="button" data-region="back" data-label="Spine" aria-label="Explore back and spine benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">SPINE</span></button>
+            <button class="hotspot" style="--x:43%;--y:70%" type="button" data-region="legs" data-label="Legs" aria-label="Explore leg benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">LEGS</span></button>
+            <button class="hotspot" style="--x:59%;--y:69.5%" type="button" data-region="joints" data-label="Joints" aria-label="Explore joint benefits" aria-pressed="false"><span class="hotspot-inner"></span><span class="hotspot-label">JOINTS</span></button>
           </div>
         </div>
-        <p class="hotspot-count mono">08 Hotspots · Click Any</p>
+        <div class="body-stage-footer">
+          <span class="stage-coordinate">18°26' N · 73°49' E</span>
+          <span class="hotspot-count mono" data-i18n="hotspotCount">08 POINTS · HOVER TO EXPLORE</span>
+        </div>
       </div>
-      <div class="anatomy-info" id="anatomy-info">
-        <p class="anatomy-info-label" data-i18n="anatomyInst">Instructions</p>
+      <aside class="anatomy-info" id="anatomy-info" aria-live="polite" aria-atomic="true">
+        <div class="anatomy-info-top">
+          <span class="anatomy-info-index mono" id="anatomy-info-index">REGION 01 / 08</span>
+          <span class="anatomy-info-pulse" aria-hidden="true"><i></i> LIVE DETAIL</span>
+        </div>
+        <p class="anatomy-info-label" data-i18n="anatomyInst">SWIMMING BENEFIT</p>
         <h3 class="anatomy-info-title" data-i18n="anatomyInstTitle">Move your cursor across the body.</h3>
-        <p class="anatomy-info-desc" data-i18n="anatomyInstDesc">Each glowing node reveals a scientifically documented benefit of swimming for that region. Tap a node to open the full editorial note.</p>
-        <div class="anatomy-buttons">
-          <button class="anatomy-btn" data-region="brain" data-i18n="btnBrain">Brain</button>
-          <button class="anatomy-btn" data-region="lungs" data-i18n="btnLungs">Lungs</button>
-          <button class="anatomy-btn" data-region="heart" data-i18n="btnHeart">Heart</button>
-          <button class="anatomy-btn" data-region="shoulders" data-i18n="btnShoulders">Shoulders</button>
-          <button class="anatomy-btn" data-region="core" data-i18n="btnCore">Core</button>
-          <button class="anatomy-btn" data-region="back" data-i18n="btnBack">Back</button>
-          <button class="anatomy-btn" data-region="legs" data-i18n="btnLegs">Legs</button>
-          <button class="anatomy-btn" data-region="joints" data-i18n="btnJoints">Joints</button>
+        <p class="anatomy-info-desc" data-i18n="anatomyInstDesc">Hover over any glowing point to reveal the swimming benefit for that region. On a phone, tap a point.</p>
+        <div class="anatomy-info-bottom">
+          <span class="anatomy-info-mark" aria-hidden="true">✳</span>
+          <span data-i18n="anatomyInfoFoot">A closer look at what every stroke can support.</span>
         </div>
-      </div>
+        <div class="anatomy-buttons" aria-label="Choose a body region">
+          <button class="anatomy-btn" type="button" data-region="brain" data-i18n="btnBrain">Brain</button>
+          <button class="anatomy-btn" type="button" data-region="lungs" data-i18n="btnLungs">Lungs</button>
+          <button class="anatomy-btn" type="button" data-region="heart" data-i18n="btnHeart">Heart</button>
+          <button class="anatomy-btn" type="button" data-region="shoulders" data-i18n="btnShoulders">Shoulders</button>
+          <button class="anatomy-btn" type="button" data-region="core" data-i18n="btnCore">Core</button>
+          <button class="anatomy-btn" type="button" data-region="back" data-i18n="btnBack">Back</button>
+          <button class="anatomy-btn" type="button" data-region="legs" data-i18n="btnLegs">Legs</button>
+          <button class="anatomy-btn" type="button" data-region="joints" data-i18n="btnJoints">Joints</button>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -393,7 +433,7 @@
         </div>
         <div class="booking-detail">
           <span class="booking-detail-label" data-i18n="detailHours">Hours</span>
-          <span class="booking-detail-value" data-i18n="detailHoursVal">07:00 → 22:00 · Wednesday off</span>
+          <span class="booking-detail-value" data-i18n="detailHoursVal">7:00 AM – 10:00 PM · Closed Wednesdays</span>
         </div>
         <div class="booking-detail">
           <span class="booking-detail-label" data-i18n="detailEmail">Email</span>
@@ -441,10 +481,10 @@
             </select>
             <div id="batch-info-strip" style="display:none; margin-top:10px; padding:12px 14px; background:rgba(103,232,249,0.06); border:1px solid rgba(103,232,249,0.2); border-radius:10px; font-size:0.82rem; color:#94a3b8;">
               <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
-                <span>🏊 <strong id="batch-coaches" style="color:#67e8f9;">—</strong> Coaches</span>
-                <span>👥 <strong id="batch-students" style="color:#67e8f9;">—</strong> / 50 Students</span>
+                <span data-i18n="batchCoaches">🏊 <strong id="batch-coaches" style="color:#67e8f9;">—</strong> Coaches</span>
+                <span data-i18n="batchStudents">👥 <strong id="batch-students" style="color:#67e8f9;">—</strong> / 50 Students</span>
                 <span id="batch-fill-text" style="font-family:var(--font-mono); font-size:0.75rem; color:#94a3b8;"></span>
-                <span id="batch-womens-badge" style="display:none; background:linear-gradient(135deg,rgba(236,72,153,0.2),rgba(168,85,247,0.2)); border:1px solid rgba(236,72,153,0.35); color:#f0abfc; border-radius:20px; padding:2px 10px; font-size:0.72rem; font-weight:600; letter-spacing:0.05em;">♀ WOMEN'S ONLY</span>
+                <span id="batch-womens-badge" style="display:none; background:linear-gradient(135deg,rgba(236,72,153,0.2),rgba(168,85,247,0.2)); border:1px solid rgba(236,72,153,0.35); color:#f0abfc; border-radius:20px; padding:2px 10px; font-size:0.72rem; font-weight:600; letter-spacing:0.05em;">♀ WOMEN-ONLY</span>
               </div>
               <div style="height:5px; background:rgba(255,255,255,0.08); border-radius:4px; overflow:hidden;">
                 <div id="batch-fill-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#06b6d4,#67e8f9); border-radius:4px; transition:width 0.5s cubic-bezier(0.16,1,0.3,1);"></div>

@@ -1,70 +1,76 @@
-import { neon } from '@neondatabase/serverless';
+'use strict';
 
-// Get a SQL query function connected to the Neon database
-// The DATABASE_URL env var is automatically set when you connect 
-// a Neon Postgres database to your Vercel project
-function getSQL() {
-  return neon(process.env.DATABASE_URL);
+const { getDatabase, isAdminRequest, sendApiError } = require('../lib/db');
+
+function readJsonBody(req) {
+  if (req.body && typeof req.body === 'object') return req.body;
+  if (typeof req.body === 'string') {
+    try { return JSON.parse(req.body); } catch (_) { return null; }
+  }
+  return null;
 }
 
-// Ensure the bookings table exists
-async function ensureTable(sql) {
-  await sql`
-    CREATE TABLE IF NOT EXISTS bookings (
-      id SERIAL PRIMARY KEY,
-      name TEXT NOT NULL,
-      phone TEXT NOT NULL,
-      email TEXT,
-      program TEXT NOT NULL,
-      date TEXT NOT NULL,
-      time TEXT NOT NULL,
-      notes TEXT,
-      created_at TIMESTAMP DEFAULT NOW()
-    )
-  `;
-}
+module.exports = async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
 
-export default async function handler(req, res) {
-  try {
-    const sql = getSQL();
-    await ensureTable(sql);
+  if (req.method === 'GET') {
+    const auth = isAdminRequest(req);
+    if (!auth.ok) return res.status(auth.statusCode).json({ error: auth.error });
 
-    if (req.method === 'POST') {
-      const { name, phone, email, program, date, time, notes } = req.body;
-
-      // Validate required fields
-      if (!name || !phone || !program || !date || !time) {
-        return res.status(400).json({ error: 'Please provide all required fields.' });
-      }
-
-      const result = await sql`
-        INSERT INTO bookings (name, phone, email, program, date, time, notes)
-        VALUES (${name}, ${phone}, ${email || ''}, ${program}, ${date}, ${time}, ${notes || ''})
-        RETURNING id
+    try {
+      const sql = await getDatabase();
+      const rows = await sql`
+        SELECT id, name, phone, email, program, date, time, notes, created_at
+        FROM bookings
+        ORDER BY created_at DESC, id DESC
+        LIMIT 1000
       `;
-
-      return res.status(201).json({
-        message: 'Booking successfully created!',
-        bookingId: result[0].id
-      });
-
-    } else if (req.method === 'GET') {
-      // Basic password protection
-      const authHeader = req.headers.authorization;
-      if (authHeader !== process.env.ADMIN_PASSWORD) {
-        return res.status(401).json({ error: 'Unauthorized access.' });
-      }
-
-      const rows = await sql`SELECT * FROM bookings ORDER BY created_at DESC`;
       return res.status(200).json(rows);
+    } catch (error) {
+      return sendApiError(res, error);
+    }
+  }
 
-    } else {
-      res.setHeader('Allow', 'GET, POST');
-      return res.status(405).json({ error: `Method ${req.method} not allowed.` });
+  if (req.method === 'POST') {
+    const body = readJsonBody(req);
+    if (!body || typeof body !== 'object') {
+      return res.status(400).json({ error: 'A valid JSON booking is required.' });
     }
 
-  } catch (error) {
-    console.error('Database error:', error);
-    return res.status(500).json({ error: 'Internal server error.' });
+    const name = typeof body.name === 'string' ? body.name.trim() : '';
+    const phone = typeof body.phone === 'string' ? body.phone.trim() : '';
+    const email = typeof body.email === 'string' ? body.email.trim() : '';
+    const program = typeof body.program === 'string' ? body.program.trim() : '';
+    const date = typeof body.date === 'string' ? body.date.trim() : '';
+    const time = typeof body.time === 'string' ? body.time.trim() : '';
+    const notes = typeof body.notes === 'string' ? body.notes.trim() : '';
+
+    if (!name || !phone || !program || !date || !time) {
+      return res.status(400).json({ error: 'Please provide name, phone, program, date, and time.' });
+    }
+    if (name.length > 150 || phone.length > 40 || email.length > 254 || program.length > 100 || date.length > 20 || time.length > 50 || notes.length > 3000) {
+      return res.status(400).json({ error: 'One or more booking fields are too long.' });
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ error: 'Please provide a valid email address or leave it blank.' });
+    }
+
+    try {
+      const sql = await getDatabase();
+      const rows = await sql`
+        INSERT INTO bookings (name, phone, email, program, date, time, notes)
+        VALUES (${name}, ${phone}, ${email}, ${program}, ${date}, ${time}, ${notes || null})
+        RETURNING id
+      `;
+      return res.status(201).json({
+        message: 'Booking successfully created!',
+        bookingId: rows[0].id
+      });
+    } catch (error) {
+      return sendApiError(res, error);
+    }
   }
-}
+
+  res.setHeader('Allow', 'GET, POST');
+  return res.status(405).json({ error: 'Method not allowed.' });
+};

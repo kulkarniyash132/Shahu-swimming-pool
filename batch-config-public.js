@@ -1,25 +1,19 @@
-import { neon } from '@neondatabase/serverless';
+'use strict';
 
-function getSQL() {
-  return neon(process.env.DATABASE_URL);
-}
+const { getDatabase, sendApiError } = require('../lib/db');
 
-/**
- * GET /api/batch-config-public
- * No auth required — returns all batch slots for the public-facing status grid.
- */
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return res.status(405).json({ error: 'Method not allowed.' });
   }
 
   try {
-    const sql = getSQL();
+    const sql = await getDatabase();
     const rows = await sql`SELECT slot, coaches, students FROM batch_config ORDER BY slot`;
     return res.status(200).json(rows);
   } catch (error) {
-    console.error('Public batch config error:', error);
-    return res.status(500).json({ error: 'Internal server error.' });
+    return sendApiError(res, error);
   }
-}
+};

@@ -52,56 +52,83 @@ const anatomyDataEn = {
 
 const anatomyDataMr = {
   brain: {
-    badge: '+ बीडीएनएफ · - कॉर्टिसोल',
+    badge: '+ मेंदूचे आरोग्य · − ताण',
     title: 'मानसिक स्पष्टता',
-    desc: 'पाण्यातील श्वासोच्छ्वास आणि अंगांच्या हालचालींमुळे बीडीएनएफ वाढते - जे न्यूरॉन्ससाठी खतासारखे काम करते - आणि तणावाचे संप्रेरक कमी करते. नियमित पोहण्यामुळे स्मरणशक्ती सुधारते आणि मानसिक आरोग्य चांगले राहते.',
+    desc: 'पोहताना श्वासाची लय आणि हात-पायांच्या समन्वित हालचालींमुळे एकाग्रता व मनःस्थिती सुधारण्यास मदत होऊ शकते. नियमित शारीरिक हालचाल मेंदूच्या आरोग्यासाठीही उपयुक्त ठरते.',
     region: 'मेंदू'
   },
   lungs: {
-    badge: '+ क्षमता · + कार्यक्षमता',
-    title: 'फुफ्फुसांचा विस्तार',
-    desc: 'छातीवर असलेल्या पाण्याच्या दाबामुळे श्वासोच्छ्वास करताना डायाफ्राम आणि इंटरकोस्टल स्नायूंना अधिक मेहनत करावी लागते - ज्यामुळे फुफ्फुसांची क्षमता वाढते. पोहणाऱ्यांमध्ये श्वास घेण्याची कार्यक्षमता वाढते जी दम्याच्या रुग्णांसाठी आणि धावपटूंसाठी फायदेशीर ठरते.',
+    badge: '+ श्वसनक्षमता · + कार्यक्षमता',
+    title: 'श्वसनक्षमता',
+    desc: 'पाण्यात पोहताना श्वास नियंत्रित ठेवण्याचा सराव होतो. यामुळे श्वसनाची लय आणि सहनशक्ती विकसित करण्यास मदत होऊ शकते.',
     region: 'फुफ्फुसे'
   },
   heart: {
-    badge: '↓ रक्तदाब · ↑ हृदयाची कार्यक्षमता',
-    title: 'हृदयाचे बळकटीकरण',
-    desc: 'पाण्यातील आडव्या स्थितीमुळे रक्तप्रवाह संतुलित होतो, ज्यामुळे हृदयावरील ताण कमी होतो आणि ते मजबूत होते. नियमित पोहणाऱ्यांचा विश्रांतीचा हृदयदर कमी असतो, रक्तदाब कमी होतो आणि VO₂ max वाढतो.',
+    badge: '+ हृदयाचे आरोग्य · + सहनशक्ती',
+    title: 'हृदय व रक्ताभिसरण',
+    desc: 'नियमित पोहणे हा हृदय आणि रक्ताभिसरणासाठी उपयुक्त एरोबिक व्यायाम आहे. क्षमतेनुसार केलेल्या सरावामुळे तंदुरुस्ती आणि सहनशक्ती सुधारण्यास मदत होते.',
     region: 'हृदय'
   },
   shoulders: {
     badge: '+ हालचाल · + ताकद',
-    title: 'खांद्यांची रचना',
-    desc: 'प्रत्येक स्ट्रोक - फ्रीस्टाईल, बॅकस्ट्रोक, बटरफ्लाय - पाण्याच्या प्रतिकारामध्ये खांद्यांना पूर्ण गतीने फिरवतो. याने खांद्यांची ताकद आणि लवचिकता जमिनीवरील व्यायामापेक्षा अधिक वाढते.',
+    title: 'खांद्यांची हालचाल',
+    desc: 'फ्रीस्टाइल, बॅकस्ट्रोक आणि ब्रेस्टस्ट्रोकसारख्या प्रकारांत खांद्यांचा वारंवार वापर होतो. योग्य तंत्राने सराव केल्याने खांद्यांची हालचाल आणि स्नायूंची ताकद विकसित होऊ शकते.',
     region: 'खांदे'
   },
   core: {
-    badge: '+ स्थिरता · + मुद्रा',
-    title: 'कोर स्थिरीकरण',
-    desc: 'पाण्यात गुरुत्वाकर्षण नसल्यामुळे कोर हा शरीराचा मुख्य स्थिरीकरण घटक बनतो. प्रत्येक हालचाल, प्रत्येक वळण उदर आणि मणक्याला गुंतवून ठेवते - ज्यामुळे ताकद वाढते आणि मुद्रा सुधारते.',
-    region: 'कोर'
+    badge: '+ स्थिरता · + शरीराचा समतोल',
+    title: 'मध्यभागाची स्थिरता',
+    desc: 'पोहताना शरीराचा तोल सांभाळण्यासाठी पोट आणि पाठीच्या मध्यभागातील स्नायू काम करतात. नियमित सरावामुळे शरीराचा समतोल आणि हालचालींवरील नियंत्रण सुधारण्यास मदत होते.',
+    region: 'शरीराचा मध्यभाग'
   },
   back: {
-    badge: '− दाब · + सरळपणा',
-    title: 'मणक्यावरील ताण कमी',
-    desc: 'पाण्याच्या प्लावकतेमुळे गुरुत्वाकर्षणाचा मणक्यावरील ताण कमी होतो. हर्निएटेड डिस्क, सायटिका आणि जुनाट पाठदुखीमध्ये पोहण्याच्या उपचाराने उल्लेखनीय फायदा होतो.',
+    badge: '+ हालचालींची मोकळीक · + आधार',
+    title: 'पाठीचा कणा व पाठ',
+    desc: 'पाण्याच्या आधारामुळे शरीर हलके वाटते आणि हालचाली करणे सोपे होऊ शकते. पाठदुखी किंवा पाठीच्या कण्याशी संबंधित त्रास असल्यास योग्य पोहण्याचा प्रकार तज्ज्ञांच्या सल्ल्याने निवडावा.',
     region: 'पाठ'
   },
   legs: {
     badge: '+ ताकद · + सहनशक्ती',
     title: 'पायांची ताकद',
-    desc: 'पाण्याच्या सततच्या प्रतिकारामध्ये किक मारल्याने मांड्या, हॅमस्ट्रिंग्स, ग्लूट्स आणि पोटऱ्या गुंतल्या जातात - धावण्याच्या प्रभावाशिवाय ताकद आणि सहनशक्ती वाढवतात.',
+    desc: 'पायांच्या किकमुळे मांडी, नितंब आणि पोटरीचे स्नायू काम करतात. पाण्याच्या प्रतिकाराविरुद्ध पोहल्याने पायांची ताकद व सहनशक्ती विकसित होऊ शकते.',
     region: 'पाय'
   },
   joints: {
-    badge: '०-परिणाम · पूर्ण हालचाल',
-    title: 'सांध्यांना मुक्ती',
-    desc: 'पाण्याचा प्लावकपणा शरीराचे ~९०% वजन कमी करतो, ज्यामुळे सांधेदुखी, गुडघेदुखी आणि शस्त्रक्रियेनंतरची पुनर्प्राप्ती वेदनामुक्त होते. पोहणे हे सांध्यांसाठी सर्वोत्तम आहे.',
+    badge: 'कमी धक्का · मोकळ्या हालचाली',
+    title: 'सांध्यांसाठी सौम्य व्यायाम',
+    desc: 'पाण्याचा उत्प्लावक आधार सांध्यांवरील भार कमी जाणवण्यास मदत करतो. दुखापत, संधिवात किंवा शस्त्रक्रियेनंतरचा सराव सुरू करण्यापूर्वी डॉक्टर किंवा फिजिओथेरपिस्टचा सल्ला घ्या.',
     region: 'सांधे'
   }
 };
 
 let currentLang = 'en';
+
+function updateAnatomyInfo(region) {
+  const data = currentLang === 'en' ? anatomyDataEn[region] : anatomyDataMr[region];
+  if (!data) return;
+  activeAnatomyRegion = region;
+  const info = document.getElementById('anatomy-info');
+  if (info) {
+    const order = ['brain', 'shoulders', 'lungs', 'heart', 'core', 'back', 'legs', 'joints'].indexOf(region) + 1;
+    const prefix = currentLang === 'mr' ? 'भाग' : 'REGION';
+    info.querySelector('.anatomy-info-index').textContent = prefix + ' ' + String(order).padStart(2, '0') + ' / 08';
+    info.querySelector('.anatomy-info-label').textContent = data.badge;
+    info.querySelector('.anatomy-info-title').textContent = data.title;
+    info.querySelector('.anatomy-info-desc').textContent = data.desc;
+    info.classList.remove('is-updating');
+    // Restart a small reveal animation without forcing layout across the whole page.
+    void info.offsetWidth;
+    info.classList.add('is-updating');
+  }
+  document.querySelectorAll('.hotspot').forEach(spot => {
+    const active = spot.dataset.region === region;
+    spot.classList.toggle('active', active);
+    spot.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  document.querySelectorAll('.anatomy-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.region === region);
+  });
+}
 
 // ===== MODAL =====
 function openModal(region) {
@@ -131,24 +158,53 @@ const WOMENS_BATCH_STARTS = [10 * 60, 15 * 60]; // 10:00 and 15:00
 
 function pad2(n) { return String(n).padStart(2, '0'); }
 
+function formatClock12(minutes) {
+  const hour24 = Math.floor(minutes / 60) % 24;
+  const hour12 = hour24 % 12 || 12;
+  const suffix = hour24 >= 12 ? 'PM' : 'AM';
+  return hour12 + ':' + pad2(minutes % 60) + ' ' + suffix;
+}
+
+function formatRange12(startMinutes, endMinutes) {
+  return formatClock12(startMinutes) + ' – ' + formatClock12(endMinutes);
+}
+
+function formatStoredRange12(value) {
+  if (typeof value !== 'string') return value || '—';
+  const match = value.match(/^(\d{1,2}):(\d{2})\s*[–-]\s*(\d{1,2}):(\d{2})$/);
+  if (!match) return value;
+  const start = Number(match[1]) * 60 + Number(match[2]);
+  const end = Number(match[3]) * 60 + Number(match[4]);
+  return formatRange12(start, end);
+}
+
 function buildSlots() {
   const slots = [];
   const startM = 6 * 60, endM = 22 * 60;
   for (let m = startM; m + 45 <= endM; m += 60) {
     const batchEnd = m + 45, breakEnd = m + 60;
-    const sh = pad2(Math.floor(m / 60)), sm = pad2(m % 60);
-    const eh = pad2(Math.floor(batchEnd / 60)), em = pad2(batchEnd % 60);
-    const label = sh + ':' + sm + ' \u2013 ' + eh + ':' + em;
+    // Keep the original 24-hour label as the database/API key to avoid breaking existing records.
+    const label = pad2(Math.floor(m / 60)) + ':' + pad2(m % 60) + ' – ' + pad2(Math.floor(batchEnd / 60)) + ':' + pad2(batchEnd % 60);
     const breakLabel = breakEnd <= endM
-      ? pad2(Math.floor(batchEnd / 60)) + ':' + pad2(batchEnd % 60) + ' \u2013 ' + pad2(Math.floor(breakEnd / 60)) + ':' + pad2(breakEnd % 60)
+      ? pad2(Math.floor(batchEnd / 60)) + ':' + pad2(batchEnd % 60) + ' – ' + pad2(Math.floor(breakEnd / 60)) + ':' + pad2(breakEnd % 60)
       : null;
     const isWomens = WOMENS_BATCH_STARTS.includes(m);
-    slots.push({ label, breakLabel, isWomens, startMinutes: m });
+    slots.push({
+      label,
+      displayLabel: formatRange12(m, batchEnd),
+      breakLabel,
+      displayBreakLabel: breakEnd <= endM ? formatRange12(batchEnd, breakEnd) : null,
+      isWomens,
+      startMinutes: m
+    });
   }
   return slots;
 }
 
 const ALL_SLOTS = buildSlots();
+let currentBatchConfigMap = {};
+let batchStatusRendered = false;
+let activeAnatomyRegion = null;
 
 // ===== BATCH SLOTS GENERATOR (booking form dropdown) =====
 function generate45MinSlots() {
@@ -157,7 +213,7 @@ function generate45MinSlots() {
   ALL_SLOTS.forEach(function(s) {
     const opt = document.createElement('option');
     opt.value = s.label;
-    opt.textContent = s.isWomens ? s.label + ' \u2640 Women\u2019s Only' : s.label;
+    opt.textContent = s.isWomens ? s.displayLabel + ' ♀ Women-only' : s.displayLabel;
     select.appendChild(opt);
   });
 }
@@ -169,6 +225,9 @@ function renderBatchCards(configMap) {
   const grid = document.getElementById('batch-status-grid');
   if (!grid) return;
   grid.innerHTML = '';
+  currentBatchConfigMap = configMap || {};
+  batchStatusRendered = true;
+  const isMr = currentLang === 'mr';
 
   ALL_SLOTS.forEach(function(s) {
     const cfg   = configMap[s.label] || null;
@@ -196,28 +255,28 @@ function renderBatchCards(configMap) {
     const coachDisplay   = coaches  !== null ? coaches  : '\u2014';
     const studentDisplay = students !== null ? students : '\u2014';
     const pctDisplay     = pct !== null ? pct + '%' : '\u2014';
-    const breakNote      = s.breakLabel ? '&#9208; Break ' + s.breakLabel : '';
+    const breakNote      = s.displayBreakLabel ? '&#9208; ' + (isMr ? 'विश्रांती ' : 'Break ') + s.displayBreakLabel : '';
 
     const card = document.createElement('div');
     card.className = cardClass;
     card.innerHTML =
       '<div class="bsc-card-header">' +
-        '<span class="bsc-slot-time">' + s.label + '</span>' +
-        (s.isWomens ? '<span class="bsc-women-badge">\u2640 Women\u2019s</span>' : '') +
+        '<span class="bsc-slot-time">' + s.displayLabel + '</span>' +
+        (s.isWomens ? '<span class="bsc-women-badge">♀ ' + (isMr ? 'फक्त महिलांसाठी' : 'Women-only') + '</span>' : '') +
       '</div>' +
       '<div class="bsc-stats">' +
         '<div class="bsc-stat">' +
           '<span class="bsc-stat-value">' + coachDisplay + '</span>' +
-          '<span class="bsc-stat-label">Coaches</span>' +
+          '<span class="bsc-stat-label">' + (isMr ? 'प्रशिक्षक' : 'Coaches') + '</span>' +
         '</div>' +
         '<div class="bsc-divider"></div>' +
         '<div class="bsc-stat">' +
           '<span class="bsc-stat-value">' + studentDisplay + '</span>' +
-          '<span class="bsc-stat-label">Students</span>' +
+          '<span class="bsc-stat-label">' + (isMr ? 'विद्यार्थी' : 'Students') + '</span>' +
         '</div>' +
       '</div>' +
       '<div class="bsc-fill-row">' +
-        '<span class="bsc-fill-label">Capacity</span>' +
+        '<span class="bsc-fill-label">' + (isMr ? 'क्षमता' : 'Capacity') + '</span>' +
         '<span class="' + pctClass + '">' + pctDisplay + '</span>' +
       '</div>' +
       '<div class="bsc-fill-track">' +
@@ -261,14 +320,18 @@ async function loadBatchStatus() {
     renderBatchCards(map);
 
     if (data.length === 0) {
-      setBatchStatusMessage('Batch counts have not been published yet. Please check back later.', false);
+      document.getElementById('batch-status-message').dataset.state = 'empty';
+      setBatchStatusMessage(currentLang === 'mr' ? 'प्रशिक्षक व विद्यार्थ्यांची संख्या अद्याप उपलब्ध नाही. कृपया नंतर पुन्हा पाहा.' : 'Batch counts have not been published yet. Please check back later.', false);
     } else {
-      setBatchStatusMessage('Counts shown below are the values entered by the pool admin. A dash means no count has been configured for that time slot.', false);
+      document.getElementById('batch-status-message').dataset.state = 'loaded';
+      setBatchStatusMessage(currentLang === 'mr' ? 'खालील संख्या तलावाच्या प्रशासकाने नोंदवलेल्या आहेत. डॅश (—) म्हणजे त्या वेळेसाठी संख्या नोंदवलेली नाही.' : 'Counts shown below are the values entered by the pool admin. A dash means no count has been configured for that time slot.', false);
     }
   } catch (e) {
     console.error('Could not load public batch status:', e);
-    grid.innerHTML = '<div class="batch-status-loading">Live coach and student counts are temporarily unavailable. Please try again later.</div>';
-    setBatchStatusMessage('We could not connect to the live batch information right now.', true);
+    grid.innerHTML = '<div class="batch-status-loading">' + (currentLang === 'mr' ? 'प्रशिक्षक व विद्यार्थ्यांची थेट माहिती सध्या उपलब्ध नाही. कृपया पुन्हा प्रयत्न करा.' : 'Live coach and student counts are temporarily unavailable. Please try again later.') + '</div>';
+    const status = document.getElementById('batch-status-message');
+    if (status) status.dataset.state = 'error';
+    setBatchStatusMessage(currentLang === 'mr' ? 'सध्या थेट बॅच-माहितीशी संपर्क साधता आला नाही.' : 'We could not connect to the live batch information right now.', true);
   }
 }
 
@@ -295,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (womensBadge) womensBadge.style.display = isWomens ? 'inline-flex' : 'none';
 
       try {
-        const cleanSlot = slot.split(' \u2640')[0].trim(); // strip women's suffix if present
+        const cleanSlot = slot; // option values retain the canonical 24-hour API/database key
         const res = await fetch('/api/batch-config?slot=' + encodeURIComponent(cleanSlot));
         if (res.ok) {
           const cfg = await res.json();
@@ -333,36 +396,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Hotspot clicks
+  // Hover/focus/tap on a body marker updates the detail panel immediately (no modal).
   document.querySelectorAll('.hotspot').forEach(spot => {
-    spot.addEventListener('click', () => {
-      const region = spot.dataset.region;
-      openModal(region);
-    });
+    const reveal = () => updateAnatomyInfo(spot.dataset.region);
+    spot.addEventListener('pointerenter', reveal);
+    spot.addEventListener('focus', reveal);
+    spot.addEventListener('click', reveal); // touch-screen fallback
   });
 
-  // Anatomy buttons
+  // The region pills remain available for keyboard and touch users.
   document.querySelectorAll('.anatomy-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const region = btn.dataset.region;
-      // Update info panel
-      const data = currentLang === 'en' ? anatomyDataEn[region] : anatomyDataMr[region];
-      if (!data) return;
-      const info = document.getElementById('anatomy-info');
-      info.querySelector('.anatomy-info-label').textContent = data.badge;
-      info.querySelector('.anatomy-info-title').textContent = data.title;
-      info.querySelector('.anatomy-info-desc').textContent = data.desc;
-      // Toggle active state
-      document.querySelectorAll('.anatomy-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      // Highlight corresponding hotspot
-      document.querySelectorAll('.hotspot').forEach(h => {
-        h.style.transform = h.dataset.region === region ? 'scale(1.4)' : 'scale(1)';
-        h.style.boxShadow = h.dataset.region === region
-          ? '0 0 0 10px rgba(103,232,249,0.3), 0 0 40px rgba(103,232,249,0.3)'
-          : '0 0 0 6px rgba(103,232,249,0.2), 0 0 20px rgba(103,232,249,0.15)';
-      });
-    });
+    btn.addEventListener('click', () => updateAnatomyInfo(btn.dataset.region));
   });
 
   // Modal close
@@ -543,10 +587,23 @@ const translations = {
     reserveYourSlot: "Reserve Your Slot →",
 
     // Stats
-    statOlympic: "Olympic Length",
+    statOlympic: "Pool Length",
     statCoaches: "Certified Coaches",
     statSwimmers: "Active Swimmers",
     statDaily: "Daily",
+    statHoursValue: "6:00 AM – 10:00 PM",
+    batchStatusDesc: "Live coach and student counts for each batch · Capacity: 50 students · 45-minute sessions with 15-minute breaks",
+    batchStatusLoading: "Loading live coach and student counts…",
+    legendWomen: "Women-only batch",
+    legendOpen: "Open batch",
+    legendFull: "Near capacity / full",
+    batchCoaches: "🏊 <strong id=\"batch-coaches\" style=\"color:#67e8f9;\">—</strong> Coaches",
+    batchStudents: "👥 <strong id=\"batch-students\" style=\"color:#67e8f9;\">—</strong> / 50 Students",
+    batchWomenOnly: "♀ WOMEN-ONLY",
+    anatomyKicker: "THE SWIMMER'S BLUEPRINT · 08 REGIONS",
+    anatomyLead: "One movement, whole-body benefits. Hover over a glowing point to see how swimming supports that region.",
+    hotspotCount: "08 POINTS · HOVER TO EXPLORE",
+    anatomyInfoFoot: "A closer look at what every stroke can support.",
     
     // Manifesto
     chapManifesto: "Chapter I — Manifesto",
@@ -594,8 +651,8 @@ const translations = {
     chapAnatomy: "Chapter II — Anatomy of a Swimmer",
     anatomyTitle: "Hover the body.<br><em>Read the transformation.</em>",
     anatomyInst: "Instructions",
-    anatomyInstTitle: "Move your cursor across the body.",
-    anatomyInstDesc: "Each glowing node reveals a scientifically documented benefit of swimming for that region. Tap a node to open the full editorial note.",
+    anatomyInstTitle: "Hover over a glowing point.",
+    anatomyInstDesc: "The details appear here as you move over each point. On a phone or tablet, tap a point to explore it.",
     btnBrain: "Brain",
     btnLungs: "Lungs",
     btnHeart: "Heart",
@@ -613,7 +670,7 @@ const translations = {
     detailLocVal: "Chhatrapati Shahu Swimming Pool,<br>Dhayari, Pune 411041",
     detailDesk: "Front Desk",
     detailHours: "Hours",
-    detailHoursVal: "07:00 → 22:00 · Wednesday off",
+    detailHoursVal: "7:00 AM – 10:00 PM · Closed Wednesdays",
     detailEmail: "Email",
     
     // Footer
@@ -627,66 +684,79 @@ const translations = {
   mr: {
     poolName: "छत्रपती शाहू जलतरण तलाव",
     navBenefits: "फायदे",
-    navWhySwim: "का पोहावे",
+    navWhySwim: "पोहण्याचे फायदे",
     navGallery: "गॅलरी",
-    navBookSlot: "वेळ नोंदवा",
-    bookYourSlot: "तुमची वेळ नोंदवा",
+    navBookSlot: "वेळ आरक्षित करा",
+    bookYourSlot: "आपली वेळ आरक्षित करा",
     heroLine1: "छत्रपती",
     heroLine2: "शाहू जलतरण",
     heroLine3: "तलाव",
-    heroDesc: "धायरीच्या मध्यभागी असलेले एक सार्वजनिक जलतरण संकुल — जिथे प्रत्येक स्ट्रोक शरीराची स्थिती सुधारतो, प्रत्येक श्वास फुफ्फुसांचा विस्तार करतो आणि प्रत्येक लॅप शहराचा गोंधळ विरघळवतो.",
+    heroDesc: "धायरीतील छत्रपती शाहू जलतरण तलावात पोहण्याचा आनंद घ्या. नियमित सरावामुळे शरीराची हालचाल, श्वसनक्षमता आणि सहनशक्ती विकसित करण्यास मदत होते.",
     bookASlot: "वेळ नोंदवा",
-    exploreBenefits: "↓ फायदे एक्सप्लोर करा",
+    exploreBenefits: "↓ फायदे जाणून घ्या",
     formName: 'पूर्ण नाव <span class="req">*</span>',
-    formPhone: 'फोन <span class="req">*</span>',
+    formPhone: 'मोबाईल क्रमांक <span class="req">*</span>',
     formEmail: 'ईमेल <span style="color:#94a3b8; font-size:0.85em; font-weight:400" data-i18n="optional">(ऐच्छिक)</span>',
     optional: "(ऐच्छिक)",
-    formProgram: 'प्रोग्राम <span class="req">*</span>',
+    formProgram: 'प्रशिक्षणाचा प्रकार <span class="req">*</span>',
     formSelect: "निवडा",
     progBeginner: "नवशिक्या",
-    progIntermediate: "मध्यम",
-    progAdvanced: "प्रगत",
-    progCompetition: "स्पर्धात्मक",
-    progTherapy: "थेरपी",
+    progIntermediate: "मध्यम स्तर",
+    progAdvanced: "प्रगत स्तर",
+    progCompetition: "स्पर्धा प्रशिक्षण",
+    progTherapy: "पुनर्वसनासाठी पोहणे",
     formDate: 'दिनांक <span class="req">*</span>',
-    formTimeSlot: 'वेळेचा स्लॉट <span class="req">*</span>',
+    formTimeSlot: 'वेळेची निवड <span class="req">*</span>',
     formNotes: "नोंदी",
-    reserveYourSlot: "तुमची वेळ राखून ठेवा →",
+    reserveYourSlot: "वेळ आरक्षित करा →",
 
     // Stats
-    statOlympic: "ऑलिम्पिक लांबी",
-    statCoaches: "प्रमाणित प्रशिक्षक",
+    statOlympic: "तलावाची लांबी",
+    statCoaches: "प्रशिक्षक",
     statSwimmers: "सक्रिय जलतरणपटू",
     statDaily: "दररोज",
+    statHoursValue: "सकाळी ६:०० – रात्री १०:००",
+    batchStatusDesc: "प्रत्येक बॅचमधील प्रशिक्षक व विद्यार्थ्यांची थेट संख्या · कमाल क्षमता: ५० विद्यार्थी · ४५ मिनिटांचे सत्र आणि १५ मिनिटांची विश्रांती",
+    batchStatusLoading: "प्रशिक्षक व विद्यार्थ्यांची थेट माहिती लोड होत आहे…",
+    legendWomen: "फक्त महिलांसाठी बॅच",
+    legendOpen: "सर्वांसाठी खुली बॅच",
+    legendFull: "क्षमता जवळपास पूर्ण / पूर्ण",
+    batchCoaches: "🏊 <strong id=\"batch-coaches\" style=\"color:#67e8f9;\">—</strong> प्रशिक्षक",
+    batchStudents: "👥 <strong id=\"batch-students\" style=\"color:#67e8f9;\">—</strong> / ५० विद्यार्थी",
+    batchWomenOnly: "♀ फक्त महिलांसाठी",
+    anatomyKicker: "जलतरणपटूचे शरीर · ८ भाग",
+    anatomyLead: "पोहण्याचे अनेक फायदे होतात. एखाद्या चमकणाऱ्या बिंदूवर कर्सर न्या आणि त्या भागाची माहिती पाहा.",
+    hotspotCount: "८ बिंदू · माहिती पाहण्यासाठी कर्सर न्या",
+    anatomyInfoFoot: "पोहण्याच्या प्रत्येक फटक्याचे फायदे अधिक जाणून घ्या.",
     
     // Manifesto
-    chapManifesto: "अध्याय १ — जाहीरनामा",
-    manifestoTitle: "पाण्याची सहा कारणे<br>जी मानवी शरीर <em>पुन्हा घडवतात</em>.",
-    ben1Title: "संपूर्ण शरीराची पुनर्रचना",
-    ben1Desc: "पोहण्यामुळे शरीराचे ७०% हून अधिक स्नायू एकाच वेळी कार्यरत होतात - खांदे, पाठ, मांड्या आणि कोर - सांध्यांवर ताण न आणता ताकद वाढवतात.",
+    chapManifesto: "भाग १ — पोहण्याचे फायदे",
+    manifestoTitle: "पोहण्याचे सहा फायदे<br>जे शरीर आणि मनाला <em>सशक्त करतात</em>.",
+    ben1Title: "संपूर्ण शरीराचा व्यायाम",
+    ben1Desc: "पोहताना खांदे, पाठ, नितंब, मांड्या आणि पोटाभोवतीचे स्नायू एकाच वेळी काम करतात. त्यामुळे सांध्यांवर कमी धक्का येत असताना ताकद आणि सहनशक्ती वाढवण्यास मदत होते.",
     ben1Impact: "६०० कॅलरी / तास",
-    impactLabel: "परिणाम",
-    ben2Title: "हृदय व रक्तवाहिन्यासंबंधी कार्यक्षमता",
-    ben2Desc: "पाण्यातील लयीत केलेले व्यायाम हृदयाला बळकट करतात, रक्तदाब कमी करतात आणि फुफ्फुसांची क्षमता वाढवतात.",
+    impactLabel: "मुख्य फायदा",
+    ben2Title: "हृदयाचे आरोग्य",
+    ben2Desc: "लयबद्ध पोहणे हा हृदयासाठी उपयुक्त एरोबिक व्यायाम आहे. नियमित आणि क्षमतेनुसार सराव केल्याने हृदयाची तंदुरुस्ती व सहनशक्ती सुधारण्यास मदत होऊ शकते.",
     ben2Impact: "↓ ३४% रक्तदाब",
-    ben3Title: "फुफ्फुसांची क्षमता",
-    ben3Desc: "पा पाण्याच्या दाबाविरूद्ध नियंत्रित श्वासोच्छ्वास केल्याने फुफ्फुसांची क्षमता वाढते - अस्थमा आणि धावपटूंसाठी फायदेशीर.",
+    ben3Title: "श्वसनक्षमता",
+    ben3Desc: "पोहताना श्वास नियंत्रित ठेवण्याचा सराव होतो. यामुळे श्वसनाची लय आणि सहनशक्ती विकसित करण्यास मदत होऊ शकते.",
     ben3Impact: "+१५% VO₂",
-    ben4Title: "मानसिक शांतता",
-    ben4Desc: "पाण्याची शांतता कॉर्टिसोल कमी करते आणि मेंदूची कार्यक्षमता वाढवते. संध्याकाळचे पोहणे ध्यानासारखेच प्रभावी आहे.",
+    ben4Title: "मनःशांती आणि एकाग्रता",
+    ben4Desc: "पोहण्याची लय आणि श्वासावर लक्ष केंद्रित केल्याने मन शांत होण्यास मदत होऊ शकते. नियमित शारीरिक हालचाल मनःस्थिती आणि एकाग्रतेसाठी उपयुक्त ठरते.",
     ben4Impact: "↑ बीडीएनएफ",
-    ben5Title: "सांध्यांचे पुनर्वसन",
-    ben5Desc: "पाण्याचा प्लावकपणा शरीराचे ~९०% वजन कमी करतो, ज्यामुळे सांधेदुखी आणि शस्त्रक्रियेनंतरची पुनर्प्राप्ती वेदनामुक्त होते.",
-    ben5Impact: "०-परिणाम",
-    ben6Title: "दीर्घायुष्याची सवय",
-    ben6Desc: "अभ्यासानुसार नियमित पोहण्यामुळे मृत्यूचा धोका २८ टक्क्यांनी कमी होतो. हा खऱ्या अर्थाने दीर्घायुष्याचा खेळ आहे.",
-    ben6Impact: "- २८% धोका",
+    ben5Title: "सांध्यांसाठी सौम्य व्यायाम",
+    ben5Desc: "पाण्याचा आधार सांध्यांवरील भार कमी जाणवण्यास मदत करतो. दुखापत किंवा शस्त्रक्रियेनंतर पोहण्याचा सराव सुरू करण्यापूर्वी वैद्यकीय तज्ज्ञांचा सल्ला घ्या.",
+    ben5Impact: "कमी धक्का",
+    ben6Title: "निरोगी जीवनशैली",
+    ben6Desc: "नियमित पोहणे ही सक्रिय जीवनशैलीचा चांगला भाग ठरू शकते. वयानुसार आणि क्षमतेनुसार सातत्याने केलेला व्यायाम दीर्घकालीन आरोग्यास मदत करतो.",
+    ben6Impact: "नियमित सराव",
     
     // Ticker
     tickerBreathe: "श्वास",
     tickerRebeat: "ठोके",
-    tickerAscend: "वर या",
-    tickerImmerse: "मग्न व्हा",
+    tickerAscend: "उंच भरारी",
+    tickerImmerse: "पाण्यात रमून जा",
     tickerFlow: "प्रवाह",
     
     // Gallery
@@ -694,19 +764,19 @@ const translations = {
     frame01: "फ्रेम · ०१",
     frame02: "फ्रेम · ०२",
     frame03: "फ्रेम · ०३",
-    chapGallery: "अध्याय ३ — गॅलरी",
-    galleryTitle: "<em>खोल पाण्यातून</em> काही क्षण.",
-    galFirstLight: "पहिली किरण",
-    galJunior: "जुनियर अकादमी",
-    galSprint: "वेगवान पोहणे",
+    chapGallery: "भाग ३ — छायाचित्रे",
+    galleryTitle: "तलावातील <em>काही खास क्षण.</em>",
+    galFirstLight: "पहाटेचा सराव",
+    galJunior: "बाल जलतरण प्रशिक्षण",
+    galSprint: "वेगाचा सराव",
     galStillness: "शांतता",
     
     // Anatomy
-    chapAnatomy: "अध्याय २ — जलतरणपटूची रचना",
-    anatomyTitle: "शरीरावर कर्सर फिरवा.<br><em>बदल अनुभवा.</em>",
-    anatomyInst: "सूचना",
-    anatomyInstTitle: "शरीरावर तुमचा कर्सर फिरवा.",
-    anatomyInstDesc: "प्रत्येक चमकणारा नोड पोहण्याचे वैज्ञानिक फायदे दर्शवतो. अधिक माहितीसाठी नोडवर टॅप करा.",
+    chapAnatomy: "भाग २ — पोहण्याचा शरीरावर होणारा परिणाम",
+    anatomyTitle: "शरीरावरील बिंदूंवर कर्सर न्या.<br><em>फायदे जाणून घ्या.</em>",
+    anatomyInst: "पोहण्याचा फायदा",
+    anatomyInstTitle: "चमकणाऱ्या बिंदूवर कर्सर न्या.",
+    anatomyInstDesc: "प्रत्येक चमकणाऱ्या बिंदूवर कर्सर नेताच त्या भागाशी संबंधित माहिती येथे दिसेल. मोबाइलवर बिंदूला स्पर्श करा.",
     btnBrain: "मेंदू",
     btnLungs: "फुफ्फुसे",
     btnHeart: "हृदय",
@@ -717,23 +787,23 @@ const translations = {
     btnJoints: "सांधे",
     
     // Booking
-    chapReserve: "अध्याय ४ — नोंदणी",
-    bookTitle: "तुमची वेळ <em>राखून ठेवा.</em>",
-    bookDesc: "ऑनलाइन लेन, प्रशिक्षक आणि वेळेचा स्लॉट बुक करा. आमच्या कडून एका दिवसात कन्फर्मेशन कॉल येईल.",
+    chapReserve: "भाग ४ — वेळ आरक्षित करा",
+    bookTitle: "आपली वेळ <em>आरक्षित करा.</em>",
+    bookDesc: "आपला प्रशिक्षण प्रकार आणि सोयीची वेळ निवडून ऑनलाइन विनंती पाठवा. पुढील पुष्टीसाठी तलावाचा कर्मचारी आपल्याशी संपर्क साधेल.",
     detailLoc: "ठिकाण",
     detailLocVal: "छत्रपती शाहू जलतरण तलाव,<br>धायरी, पुणे ४११०४१",
     detailDesk: "स्वागत कक्ष",
     detailHours: "वेळ",
-    detailHoursVal: "०७:०० → २२:०० · बुधवार बंद",
+    detailHoursVal: "सकाळी ७:०० ते रात्री १०:०० · बुधवारी बंद",
     detailEmail: "ईमेल",
     
     // Footer
     footerEst: "स्थापित २०२२ · धायरी, पुणे",
-    footerDesc: "पुण्याचे एक सार्वजनिक जलतरण संकुल — खेळ, थेरपी आणि जीवनभराचा सराव म्हणून पोहण्यासाठी समर्पित.",
+    footerDesc: "पोहण्याचा सराव, तंदुरुस्ती आणि जलक्रीडेला प्रोत्साहन देणारे धायरीतील सार्वजनिक जलतरण संकुल.",
     footerVisit: "भेट द्या",
-    footerNav: "नॅव्हिगेट करा",
+    footerNav: "पृष्ठावरील दुवे",
     footerTagline: "© २०२४ छत्रपती शाहू जलतरण तलाव · धायरी, पुणे · सर्व हक्क सुरक्षित",
-    heroEst: "स्थापित धायरी · पुणे · २०२२ पासून"
+    heroEst: "धायरी · पुणे · स्थापना २०२२"
   }
 };
 
@@ -751,14 +821,37 @@ langToggleBtn.addEventListener('click', () => {
     }
   });
 
-  // Also update active anatomy button if any is selected
-  const activeBtn = document.querySelector('.anatomy-btn.active');
-  if (activeBtn) {
-    const region = activeBtn.dataset.region;
-    const data = currentLang === 'en' ? anatomyDataEn[region] : anatomyDataMr[region];
-    const info = document.getElementById('anatomy-info');
-    info.querySelector('.anatomy-info-label').textContent = data.badge;
-    info.querySelector('.anatomy-info-title').textContent = data.title;
-    info.querySelector('.anatomy-info-desc').textContent = data.desc;
+  // Keep the anatomy detail and live batch cards in the selected language.
+  const hotspotNames = currentLang === 'mr'
+    ? { brain: 'मेंदू', shoulders: 'खांदे', lungs: 'फुफ्फुसे', heart: 'हृदय', core: 'मध्यभाग', back: 'पाठ', legs: 'पाय', joints: 'सांधे' }
+    : { brain: 'BRAIN', shoulders: 'SHOULDERS', lungs: 'LUNGS', heart: 'HEART', core: 'CORE', back: 'SPINE', legs: 'LEGS', joints: 'JOINTS' };
+  document.querySelectorAll('.hotspot').forEach(spot => {
+    const label = spot.querySelector('.hotspot-label');
+    if (label) label.textContent = hotspotNames[spot.dataset.region] || '';
+    spot.setAttribute('aria-label', (currentLang === 'mr' ? 'माहिती पाहा: ' : 'Explore ') + (hotspotNames[spot.dataset.region] || ''));
+  });
+  if (activeAnatomyRegion) updateAnatomyInfo(activeAnatomyRegion);
+  const infoStrip = document.getElementById('batch-info-strip');
+  if (infoStrip) {
+    const coachCount = document.getElementById('batch-coaches');
+    const studentCount = document.getElementById('batch-students');
+    const coachValue = coachCount ? coachCount.textContent : '—';
+    const studentValue = studentCount ? studentCount.textContent : '—';
+    const labels = infoStrip.querySelector('div');
+    if (labels) {
+      labels.children[0].innerHTML = '🏊 <strong id="batch-coaches" style="color:#67e8f9;">' + coachValue + '</strong> ' + (currentLang === 'mr' ? 'प्रशिक्षक' : 'Coaches');
+      labels.children[1].innerHTML = '👥 <strong id="batch-students" style="color:#67e8f9;">' + studentValue + '</strong> / ' + (currentLang === 'mr' ? '५० विद्यार्थी' : '50 Students');
+      const womens = document.getElementById('batch-womens-badge');
+      if (womens) womens.textContent = currentLang === 'mr' ? '♀ फक्त महिलांसाठी' : '♀ WOMEN-ONLY';
+    }
+  }
+  if (document.getElementById('batch-status-grid') && batchStatusRendered) {
+    renderBatchCards(currentBatchConfigMap);
+  }
+  const statusEl = document.getElementById('batch-status-message');
+  if (statusEl && statusEl.dataset.state) {
+    if (statusEl.dataset.state === 'empty') setBatchStatusMessage(currentLang === 'mr' ? 'प्रशिक्षक व विद्यार्थ्यांची संख्या अद्याप उपलब्ध नाही. कृपया नंतर पुन्हा पाहा.' : 'Batch counts have not been published yet. Please check back later.', false);
+    else if (statusEl.dataset.state === 'loaded') setBatchStatusMessage(currentLang === 'mr' ? 'खालील संख्या तलावाच्या प्रशासकाने नोंदवलेल्या आहेत. डॅश (—) म्हणजे त्या वेळेसाठी संख्या नोंदवलेली नाही.' : 'Counts shown below are the values entered by the pool admin. A dash means no count has been configured for that time slot.', false);
+    else if (statusEl.dataset.state === 'error') setBatchStatusMessage(currentLang === 'mr' ? 'सध्या थेट बॅच-माहितीशी संपर्क साधता आला नाही.' : 'We could not connect to the live batch information right now.', true);
   }
 });

@@ -49,3 +49,12 @@ If `/api/health` shows an error, open Vercel → your project → **Deployments*
 ## Free-plan note
 
 This code does not require a paid API or paid database package. Keep an eye on free-tier limits. Vercel's Hobby plan is restricted to personal/non-commercial use; check Vercel's current terms if this is being used as the live website for an operating pool. Do not upgrade or enable paid usage if your budget is strictly ₹0.
+
+
+## Latest visual refinements
+- The pool length shown on the public homepage is now 25 m.
+- Visitor-facing pool hours and batch times display in 12-hour AM/PM format; the internal API/database batch keys remain 24-hour to preserve existing records.
+- The body anatomy section has a more detailed, animated visual treatment. Moving the pointer over a highlighted point updates the side information panel immediately; click/tap and keyboard focus are supported as fallbacks.
+- Marathi copy has been revised for more natural phrasing across the main experience.
+
+The visitor page uses the stated 25 m pool length and shows visible times in 12-hour AM/PM format. Batch IDs sent to the API remain in their original 24-hour format so existing Neon rows continue to match.

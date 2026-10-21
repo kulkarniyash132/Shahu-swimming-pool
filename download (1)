@@ -1,0 +1,8 @@
+node_modules
+.env
+.env.*
+.vercel
+.vscode
+# Legacy local-only backend and SQLite file; Vercel uses /api functions + Neon.
+server.js
+database.sqlite
