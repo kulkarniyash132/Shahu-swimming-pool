@@ -244,85 +244,128 @@
 
     // ── Bookings table ──
     document.addEventListener('DOMContentLoaded', async () => {
-      let password = prompt('Enter Admin Password (default: admin123):');
+      const tbody = document.getElementById('bookings-body');
+      const manageButton = document.getElementById('open-batches-btn');
+      const password = prompt('Enter the admin password configured in Vercel:');
+
       if (!password) {
-        password = 'admin123';
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Admin password is required. Reload this page to try again.</td></tr>';
+        manageButton.disabled = true;
+        return;
       }
       adminPassword = password;
 
       try {
-        const response = await fetch('/api/bookings', { headers: { 'Authorization': password } });
-        if (response.status === 401) {
-          document.getElementById('bookings-body').innerHTML =
-            '<tr><td colspan="7" class="empty-state" style="color:#ef4444;">Incorrect Password. Reload page to try again.</td></tr>';
-          document.getElementById('open-batches-btn').disabled = true;
+        const response = await fetch('/api/bookings', {
+          headers: { 'Authorization': password }
+        });
+        const responseData = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          const message = responseData.error || (response.status === 401 ? 'Incorrect admin password.' : 'Could not load bookings.');
+          tbody.innerHTML = '<tr><td colspan="7" class="empty-state" style="color:#ef4444;"></td></tr>';
+          tbody.querySelector('.empty-state').textContent = message;
+          manageButton.disabled = true;
           return;
         }
-        const data = await response.json();
-        const tbody = document.getElementById('bookings-body');
-        if (data.length === 0) { tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No bookings found.</td></tr>'; return; }
+
+        const data = responseData;
+        if (!Array.isArray(data)) throw new Error('The booking API returned an unexpected response.');
+        if (data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No bookings found.</td></tr>';
+          return;
+        }
+
         tbody.innerHTML = '';
         data.forEach(booking => {
           const tr = document.createElement('tr');
-          tr.innerHTML =
-            '<td>#' + booking.id + '</td>' +
-            '<td class="td-name">' + booking.name + '</td>' +
-            '<td>' + booking.phone + '</td>' +
-            '<td>' + booking.program + '</td>' +
-            '<td class="td-date">' + booking.date + '</td>' +
-            '<td>' + booking.time + '</td>' +
-            '<td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="' + (booking.notes || '') + '">' + (booking.notes || '&mdash;') + '</td>';
+          const addCell = (value, className) => {
+            const td = document.createElement('td');
+            td.textContent = value == null || value === '' ? '—' : String(value);
+            if (className) td.className = className;
+            return td;
+          };
+          tr.appendChild(addCell('#' + booking.id));
+          tr.appendChild(addCell(booking.name, 'td-name'));
+          tr.appendChild(addCell(booking.phone));
+          tr.appendChild(addCell(booking.program));
+          tr.appendChild(addCell(booking.date, 'td-date'));
+          tr.appendChild(addCell(booking.time));
+          const notesCell = addCell(booking.notes);
+          notesCell.style.maxWidth = '200px';
+          notesCell.style.whiteSpace = 'nowrap';
+          notesCell.style.overflow = 'hidden';
+          notesCell.style.textOverflow = 'ellipsis';
+          notesCell.title = booking.notes || '';
+          tr.appendChild(notesCell);
           tbody.appendChild(tr);
         });
       } catch (e) {
-        document.getElementById('bookings-body').innerHTML =
-          '<tr><td colspan="7" class="empty-state">Error loading bookings. Check connection.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-state" style="color:#ef4444;">Error loading bookings. Check the API and database settings in Vercel.</td></tr>';
+        manageButton.disabled = true;
       }
     });
 
     // ── Open modal ──
     async function openBatchModal() {
-      // Fetch existing config
-      try {
-        const res = await fetch('/api/batch-config', { headers: { 'Authorization': adminPassword } });
-        if (res.ok) {
-          const cfg = await res.json();
-          cfg.forEach(row => { batchData[row.slot] = { coaches: row.coaches, students: row.students }; });
-        }
-      } catch (_) {}
-
       const grid = document.getElementById('batch-grid');
-      grid.innerHTML = '';
-
-      SLOTS.forEach(function(s) {
-        const slotLabel = s.slotLabel, breakLabel = s.breakLabel;
-        const existing = batchData[slotLabel] || {};
-        const card = document.createElement('div');
-        card.className = 'batch-card';
-        card.dataset.slot = slotLabel;
-        card.innerHTML =
-          '<div class="batch-slot-label">' + slotLabel + '</div>' +
-          (breakLabel ? '<div class="batch-break-label">&#9208; ' + breakLabel + '</div>' : '') +
-          '<div class="batch-fields">' +
-            '<div class="batch-field">' +
-              '<label>Active Coaches</label>' +
-              '<input type="number" min="0" max="50" placeholder="0" class="coaches-input" value="' + (existing.coaches !== undefined ? existing.coaches : '') + '" data-slot="' + slotLabel + '">' +
-            '</div>' +
-            '<div class="batch-field">' +
-              '<label>Active Students</label>' +
-              '<input type="number" min="0" max="500" placeholder="0" class="students-input" value="' + (existing.students !== undefined ? existing.students : '') + '" data-slot="' + slotLabel + '">' +
-            '</div>' +
-          '</div>';
-
-        card.querySelectorAll('input').forEach(function(inp) {
-          inp.addEventListener('input', function() { card.classList.add('modified'); });
-        });
-        grid.appendChild(card);
-      });
-
+      const saveBtn = document.getElementById('save-batches-btn');
+      grid.innerHTML = '<div class="empty-state">Loading saved batch counts…</div>';
+      saveBtn.disabled = true;
       document.getElementById('batch-modal-overlay').classList.add('active');
       document.body.style.overflow = 'hidden';
       document.getElementById('save-status').style.display = 'none';
+
+      try {
+        const res = await fetch('/api/batch-config', {
+          headers: { 'Authorization': adminPassword }
+        });
+        const cfg = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          throw new Error(cfg.error || 'Could not load saved batch counts.');
+        }
+        if (!Array.isArray(cfg)) {
+          throw new Error('The batch API returned an unexpected response.');
+        }
+
+        batchData = {};
+        cfg.forEach(row => {
+          batchData[row.slot] = { coaches: row.coaches, students: row.students };
+        });
+
+        grid.innerHTML = '';
+        SLOTS.forEach(function(s) {
+          const slotLabel = s.slotLabel, breakLabel = s.breakLabel;
+          const existing = batchData[slotLabel] || {};
+          const card = document.createElement('div');
+          card.className = 'batch-card';
+          card.dataset.slot = slotLabel;
+          card.innerHTML =
+            '<div class="batch-slot-label">' + slotLabel + '</div>' +
+            (breakLabel ? '<div class="batch-break-label">&#9208; ' + breakLabel + '</div>' : '') +
+            '<div class="batch-fields">' +
+              '<div class="batch-field">' +
+                '<label>Active Coaches</label>' +
+                '<input type="number" min="0" max="50" step="1" placeholder="0" class="coaches-input" value="' + (existing.coaches !== undefined ? existing.coaches : '') + '" data-slot="' + slotLabel + '">' +
+              '</div>' +
+              '<div class="batch-field">' +
+                '<label>Active Students</label>' +
+                '<input type="number" min="0" max="500" step="1" placeholder="0" class="students-input" value="' + (existing.students !== undefined ? existing.students : '') + '" data-slot="' + slotLabel + '">' +
+              '</div>' +
+            '</div>';
+
+          card.querySelectorAll('input').forEach(function(inp) {
+            inp.addEventListener('input', function() { card.classList.add('modified'); });
+          });
+          grid.appendChild(card);
+        });
+        saveBtn.disabled = false;
+      } catch (error) {
+        grid.innerHTML = '<div class="empty-state" style="color:#f87171;">Could not load existing batch counts. No values have been changed. Close this window and check your Vercel settings.</div>';
+        showStatus('✕ ' + (error.message || 'Failed to load saved batch counts.'), true);
+        // Never permit a save when the existing data could not be loaded.
+        saveBtn.disabled = true;
+      }
     }
 
     function closeBatchModal() {

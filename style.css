@@ -975,6 +975,13 @@ textarea.form-input {
 }
 .batch-status-title em { color: var(--cyan); font-style: italic; }
 .batch-status-desc { font-size: 0.9rem; color: var(--slate-500); max-width: 560px; }
+.batch-status-message {
+  margin: -1.5rem 0 1.25rem;
+  font-size: 0.82rem;
+  color: var(--slate-500);
+  min-height: 1.3em;
+}
+.batch-status-message.is-error { color: #fca5a5; }
 
 .batch-status-grid {
   display: grid;

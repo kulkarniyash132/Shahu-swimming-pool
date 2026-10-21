@@ -236,23 +236,39 @@ function renderBatchCards(configMap) {
   }, 120);
 }
 
+function setBatchStatusMessage(message, isError) {
+  const status = document.getElementById('batch-status-message');
+  if (!status) return;
+  status.textContent = message;
+  status.classList.toggle('is-error', Boolean(isError));
+}
+
 async function loadBatchStatus() {
   const grid = document.getElementById('batch-status-grid');
   if (!grid) return;
 
   try {
-    const res = await fetch('/api/batch-config-public');
-    if (res.ok) {
-      const data = await res.json(); // array of { slot, coaches, students }
-      const map = {};
-      data.forEach(function(r) { map[r.slot] = r; });
-      renderBatchCards(map);
+    const res = await fetch('/api/batch-config-public', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Batch status API returned HTTP ' + res.status);
+
+    const data = await res.json(); // array of { slot, coaches, students }
+    if (!Array.isArray(data)) throw new Error('Unexpected batch status response');
+
+    const map = {};
+    data.forEach(function(r) {
+      if (r && typeof r.slot === 'string') map[r.slot] = r;
+    });
+    renderBatchCards(map);
+
+    if (data.length === 0) {
+      setBatchStatusMessage('Batch counts have not been published yet. Please check back later.', false);
     } else {
-      // Render skeleton cards without data
-      renderBatchCards({});
+      setBatchStatusMessage('Counts shown below are the values entered by the pool admin. A dash means no count has been configured for that time slot.', false);
     }
   } catch (e) {
-    renderBatchCards({});
+    console.error('Could not load public batch status:', e);
+    grid.innerHTML = '<div class="batch-status-loading">Live coach and student counts are temporarily unavailable. Please try again later.</div>';
+    setBatchStatusMessage('We could not connect to the live batch information right now.', true);
   }
 }
 

@@ -1,7 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/api/bookings", "destination": "/api/bookings" },
-    { "source": "/api/batch-config", "destination": "/api/batch-config" },
-    { "source": "/api/batch-config-public", "destination": "/api/batch-config-public" }
-  ]
+  "version": 2
 }
