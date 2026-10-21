@@ -124,8 +124,198 @@ function closeModal() {
 
 window.closeModal = closeModal;
 
+// ===== BATCH CONFIG (shared) =====
+const MAX_CAPACITY = 50;
+// Women's only batch start times in minutes from midnight
+const WOMENS_BATCH_STARTS = [10 * 60, 15 * 60]; // 10:00 and 15:00
+
+function pad2(n) { return String(n).padStart(2, '0'); }
+
+function buildSlots() {
+  const slots = [];
+  const startM = 6 * 60, endM = 22 * 60;
+  for (let m = startM; m + 45 <= endM; m += 60) {
+    const batchEnd = m + 45, breakEnd = m + 60;
+    const sh = pad2(Math.floor(m / 60)), sm = pad2(m % 60);
+    const eh = pad2(Math.floor(batchEnd / 60)), em = pad2(batchEnd % 60);
+    const label = sh + ':' + sm + ' \u2013 ' + eh + ':' + em;
+    const breakLabel = breakEnd <= endM
+      ? pad2(Math.floor(batchEnd / 60)) + ':' + pad2(batchEnd % 60) + ' \u2013 ' + pad2(Math.floor(breakEnd / 60)) + ':' + pad2(breakEnd % 60)
+      : null;
+    const isWomens = WOMENS_BATCH_STARTS.includes(m);
+    slots.push({ label, breakLabel, isWomens, startMinutes: m });
+  }
+  return slots;
+}
+
+const ALL_SLOTS = buildSlots();
+
+// ===== BATCH SLOTS GENERATOR (booking form dropdown) =====
+function generate45MinSlots() {
+  const select = document.getElementById('form-time');
+  if (!select) return;
+  ALL_SLOTS.forEach(function(s) {
+    const opt = document.createElement('option');
+    opt.value = s.label;
+    opt.textContent = s.isWomens ? s.label + ' \u2640 Women\u2019s Only' : s.label;
+    select.appendChild(opt);
+  });
+}
+
+generate45MinSlots();
+
+// ===== BATCH STATUS GRID (public visible section) =====
+function renderBatchCards(configMap) {
+  const grid = document.getElementById('batch-status-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  ALL_SLOTS.forEach(function(s) {
+    const cfg   = configMap[s.label] || null;
+    const coaches  = cfg ? cfg.coaches  : null;
+    const students = cfg ? cfg.students : null;
+    const pct    = students !== null ? Math.min(100, Math.round((students / MAX_CAPACITY) * 100)) : null;
+    const isEmpty  = cfg === null;
+    const isNearFull = pct !== null && pct >= 80 && pct < 100;
+    const isFull     = pct !== null && pct >= 100;
+
+    // Card modifier classes
+    let cardClass = 'bsc-card';
+    if (s.isWomens) cardClass += ' bsc-card--women';
+    else if (isFull) cardClass += ' bsc-card--full';
+    else if (isNearFull) cardClass += ' bsc-card--near-full';
+    if (isEmpty) cardClass += ' bsc-card--empty';
+
+    // Fill bar color class
+    let barClass = 'bsc-fill-bar';
+    let pctClass = 'bsc-fill-pct';
+    if (s.isWomens) { barClass += ' bsc-fill-bar--women'; }
+    else if (isFull) { barClass += ' bsc-fill-bar--danger'; pctClass += ' bsc-fill-pct--danger'; }
+    else if (isNearFull) { barClass += ' bsc-fill-bar--warn'; pctClass += ' bsc-fill-pct--warn'; }
+
+    const coachDisplay   = coaches  !== null ? coaches  : '\u2014';
+    const studentDisplay = students !== null ? students : '\u2014';
+    const pctDisplay     = pct !== null ? pct + '%' : '\u2014';
+    const breakNote      = s.breakLabel ? '&#9208; Break ' + s.breakLabel : '';
+
+    const card = document.createElement('div');
+    card.className = cardClass;
+    card.innerHTML =
+      '<div class="bsc-card-header">' +
+        '<span class="bsc-slot-time">' + s.label + '</span>' +
+        (s.isWomens ? '<span class="bsc-women-badge">\u2640 Women\u2019s</span>' : '') +
+      '</div>' +
+      '<div class="bsc-stats">' +
+        '<div class="bsc-stat">' +
+          '<span class="bsc-stat-value">' + coachDisplay + '</span>' +
+          '<span class="bsc-stat-label">Coaches</span>' +
+        '</div>' +
+        '<div class="bsc-divider"></div>' +
+        '<div class="bsc-stat">' +
+          '<span class="bsc-stat-value">' + studentDisplay + '</span>' +
+          '<span class="bsc-stat-label">Students</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="bsc-fill-row">' +
+        '<span class="bsc-fill-label">Capacity</span>' +
+        '<span class="' + pctClass + '">' + pctDisplay + '</span>' +
+      '</div>' +
+      '<div class="bsc-fill-track">' +
+        '<div class="' + barClass + '" data-pct="' + (pct || 0) + '"></div>' +
+      '</div>' +
+      (breakNote ? '<div class="bsc-break-note">' + breakNote + '</div>' : '');
+
+    grid.appendChild(card);
+  });
+
+  // Animate fill bars after a short delay (allows CSS transition to play)
+  setTimeout(function() {
+    grid.querySelectorAll('.bsc-fill-bar[data-pct]').forEach(function(bar) {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 120);
+}
+
+async function loadBatchStatus() {
+  const grid = document.getElementById('batch-status-grid');
+  if (!grid) return;
+
+  try {
+    const res = await fetch('/api/batch-config-public');
+    if (res.ok) {
+      const data = await res.json(); // array of { slot, coaches, students }
+      const map = {};
+      data.forEach(function(r) { map[r.slot] = r; });
+      renderBatchCards(map);
+    } else {
+      // Render skeleton cards without data
+      renderBatchCards({});
+    }
+  } catch (e) {
+    renderBatchCards({});
+  }
+}
+
 // ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Load public batch status section
+  loadBatchStatus();
+
+  // Booking form: time slot change → update info strip
+  const timeSelect = document.getElementById('form-time');
+  const batchStrip = document.getElementById('batch-info-strip');
+
+  if (timeSelect && batchStrip) {
+    timeSelect.addEventListener('change', async function() {
+      const slot = timeSelect.value;
+      if (!slot) { batchStrip.style.display = 'none'; return; }
+
+      const slotMeta = ALL_SLOTS.find(function(s) { return s.label === slot || slot.startsWith(s.label); });
+      const isWomens = slotMeta ? slotMeta.isWomens : false;
+
+      // Update women's badge in strip
+      const womensBadge = document.getElementById('batch-womens-badge');
+      if (womensBadge) womensBadge.style.display = isWomens ? 'inline-flex' : 'none';
+
+      try {
+        const cleanSlot = slot.split(' \u2640')[0].trim(); // strip women's suffix if present
+        const res = await fetch('/api/batch-config?slot=' + encodeURIComponent(cleanSlot));
+        if (res.ok) {
+          const cfg = await res.json();
+          const students = cfg.students || 0;
+          const pct = Math.min(100, Math.round((students / MAX_CAPACITY) * 100));
+
+          document.getElementById('batch-coaches').textContent  = cfg.coaches  !== undefined ? cfg.coaches  : '\u2014';
+          document.getElementById('batch-students').textContent = cfg.students !== undefined ? cfg.students : '\u2014';
+
+          const fillText = document.getElementById('batch-fill-text');
+          if (fillText) fillText.textContent = pct + '% full';
+
+          const fillBar = document.getElementById('batch-fill-bar');
+          if (fillBar) {
+            fillBar.style.width = pct + '%';
+            fillBar.style.background = isWomens
+              ? 'linear-gradient(90deg,#ec4899,#a855f7)'
+              : pct >= 100
+                ? 'linear-gradient(90deg,#ef4444,#f87171)'
+                : pct >= 80
+                  ? 'linear-gradient(90deg,#f97316,#fb923c)'
+                  : 'linear-gradient(90deg,#06b6d4,#67e8f9)';
+          }
+
+          batchStrip.style.display = 'block';
+        } else {
+          // Still show strip with women's badge if applicable
+          if (isWomens) { batchStrip.style.display = 'block'; }
+          else { batchStrip.style.display = 'none'; }
+        }
+      } catch (err) {
+        if (isWomens) { batchStrip.style.display = 'block'; }
+        else { batchStrip.style.display = 'none'; }
+      }
+    });
+  }
 
   // Hotspot clicks
   document.querySelectorAll('.hotspot').forEach(spot => {

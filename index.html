@@ -80,6 +80,28 @@
     </div>
   </div>
 
+  <!-- ===== LIVE BATCH STATUS ===== -->
+  <section class="batch-status-section" id="batch-status">
+    <div class="batch-status-inner">
+      <div class="batch-status-header">
+        <div class="chapter-label">
+          <span class="mono">Live Batch Status</span>
+        </div>
+        <h2 class="batch-status-title">Today's <em>batches.</em></h2>
+        <p class="batch-status-desc">Real-time coach and student count per batch · Max capacity 50 students · 45-min sessions with 15-min breaks</p>
+      </div>
+      <div class="batch-status-grid" id="batch-status-grid">
+        <!-- Populated by JS -->
+        <div class="batch-status-loading">Loading batches…</div>
+      </div>
+      <div class="batch-status-legend">
+        <span class="legend-item"><span class="legend-dot legend-dot--women"></span> Women's exclusive batch</span>
+        <span class="legend-item"><span class="legend-dot legend-dot--open"></span> Open batch</span>
+        <span class="legend-item"><span class="legend-dot legend-dot--full"></span> Near / at capacity</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== BENEFITS / MANIFESTO ===== -->
   <section class="benefits section-pad" id="benefits">
     <div class="chapter-label"><span data-i18n="chapManifesto">Chapter I — Manifesto</span></div>
@@ -414,23 +436,19 @@
             <label class="form-label" data-i18n="formTimeSlot">Time Slot <span class="req">*</span></label>
             <select class="form-input" required id="form-time">
               <option value="" disabled selected data-i18n="formSelect">Select</option>
-              <option>06:00 – 07:00</option>
-              <option>07:00 – 08:00</option>
-              <option>08:00 – 09:00</option>
-              <option>09:00 – 10:00</option>
-              <option>10:00 – 11:00</option>
-              <option>11:00 – 12:00</option>
-              <option>12:00 – 13:00</option>
-              <option>13:00 – 14:00</option>
-              <option>14:00 – 15:00</option>
-              <option>15:00 – 16:00</option>
-              <option>16:00 – 17:00</option>
-              <option>17:00 – 18:00</option>
-              <option>18:00 – 19:00</option>
-              <option>19:00 – 20:00</option>
-              <option>20:00 – 21:00</option>
-              <option>21:00 – 22:00</option>
+              <!-- 45-min batch slots populated by JS -->
             </select>
+            <div id="batch-info-strip" style="display:none; margin-top:10px; padding:12px 14px; background:rgba(103,232,249,0.06); border:1px solid rgba(103,232,249,0.2); border-radius:10px; font-size:0.82rem; color:#94a3b8;">
+              <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin-bottom:8px;">
+                <span>🏊 <strong id="batch-coaches" style="color:#67e8f9;">—</strong> Coaches</span>
+                <span>👥 <strong id="batch-students" style="color:#67e8f9;">—</strong> / 50 Students</span>
+                <span id="batch-fill-text" style="font-family:var(--font-mono); font-size:0.75rem; color:#94a3b8;"></span>
+                <span id="batch-womens-badge" style="display:none; background:linear-gradient(135deg,rgba(236,72,153,0.2),rgba(168,85,247,0.2)); border:1px solid rgba(236,72,153,0.35); color:#f0abfc; border-radius:20px; padding:2px 10px; font-size:0.72rem; font-weight:600; letter-spacing:0.05em;">♀ WOMEN'S ONLY</span>
+              </div>
+              <div style="height:5px; background:rgba(255,255,255,0.08); border-radius:4px; overflow:hidden;">
+                <div id="batch-fill-bar" style="height:100%; width:0%; background:linear-gradient(90deg,#06b6d4,#67e8f9); border-radius:4px; transition:width 0.5s cubic-bezier(0.16,1,0.3,1);"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="form-row">
