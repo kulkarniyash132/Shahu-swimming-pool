@@ -58,3 +58,8 @@ This code does not require a paid API or paid database package. Keep an eye on f
 - Marathi copy has been revised for more natural phrasing across the main experience.
 
 The visitor page uses the stated 25 m pool length and shows visible times in 12-hour AM/PM format. Batch IDs sent to the API remain in their original 24-hour format so existing Neon rows continue to match.
+
+## Latest anatomy cleanup
+- Removed the visible “INTERACTIVE” and “LIVE DETAIL” labels; hover/focus/tap details still work.
+- Redrew the legs as separate, smoother shapes to better match the torso styling and proportions.
+- Repositioned the knee accents and the legs/joints hover markers to line up with the updated illustration.

@@ -1134,27 +1134,6 @@ textarea.form-input {
 }
 .body-stage-topline { font-size: 0.61rem; margin-bottom: 0.25rem; }
 .body-stage-footer { font-size: 0.57rem; margin-top: 0.45rem; flex-wrap: wrap; }
-.live-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  border: 1px solid rgba(74,222,128,0.22);
-  border-radius: 999px;
-  padding: 0.35rem 0.6rem;
-  color: #86efac;
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
-}
-.live-indicator i, .anatomy-info-pulse i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  display: inline-block;
-  background: #4ade80;
-  box-shadow: 0 0 12px rgba(74,222,128,0.65);
-  animation: anatomyPulse 1.8s infinite;
-}
 .body-diagram {
   max-width: 405px;
   position: relative;
@@ -1258,7 +1237,6 @@ textarea.form-input {
 }
 .anatomy-info-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 2.25rem; position: relative; z-index: 1; }
 .anatomy-info-index { color: var(--slate-500); font-size: 0.62rem; }
-.anatomy-info-pulse { display: inline-flex; align-items: center; gap: 0.5rem; color: #86efac; font-family: var(--font-mono); font-size: 0.57rem; letter-spacing: 0.12em; white-space: nowrap; }
 .anatomy-info-label { color: var(--cyan); margin-bottom: 0.8rem; font-size: 0.65rem; position: relative; z-index: 1; }
 .anatomy-info-title { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.12; margin-bottom: 1.15rem; position: relative; z-index: 1; }
 .anatomy-info-desc { max-width: 610px; font-size: 0.98rem; line-height: 1.9; margin-bottom: 1.5rem; position: relative; z-index: 1; }
@@ -1268,7 +1246,6 @@ textarea.form-input {
 .anatomy-btn { letter-spacing: 0.04em; font-size: 0.66rem; text-transform: none; }
 .anatomy-btn.active { background: rgba(103,232,249,0.1); }
 .anatomy-info.is-updating .anatomy-info-title, .anatomy-info.is-updating .anatomy-info-desc { animation: detailArrive 0.32s ease both; }
-@keyframes anatomyPulse { 50% { opacity: 0.45; } }
 @keyframes orbitBreath { 50% { opacity: 0.45; transform: translate(-50%,-50%) scale(1.035); } }
 @keyframes markerBreath { 0%,100% { box-shadow: 0 0 0 4px rgba(103,232,249,0.08), 0 0 14px rgba(34,211,238,0.4); } 50% { box-shadow: 0 0 0 7px rgba(103,232,249,0.1), 0 0 21px rgba(34,211,238,0.65); } }
 @keyframes bodyScan { 0% { top: 4%; opacity: 0; } 12% { opacity: 0.4; } 88% { opacity: 0.3; } 100% { top: 94%; opacity: 0; } }
@@ -1295,6 +1272,6 @@ textarea.form-input {
   .anatomy-info { padding: 1.35rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .body-orbit, .body-scanline, .hotspot, .live-indicator i, .anatomy-info-pulse i { animation: none !important; }
+  .body-orbit, .body-scanline, .hotspot { animation: none !important; }
   .hotspot, .hotspot-label, .anatomy-info * { transition-duration: 0.01ms !important; }
 }
